@@ -11,49 +11,52 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+
 <style>
 :root {
-  --primary: #0b3c2a; /* Deep Forest Green */
-  --primary-dark: #062419; /* Deeper Green */
-  --secondary: #ff8da1; /* Pastel Pink Highlight */
+  --primary: #2d0e3a; /* Deep Forest Purple - Elegant Contrast */
+  --primary-dark: #190524; /* Darker Purple */
+  --secondary: #d946ef; /* Vibrant Pink-Purple (Fuchsia) Accent */
   --danger: #d84b55; /* Modern Coral Red */
-  --bg: #fff0f3; /* Soft Warm Pastel Pink Background */
+  --bg: #faf0f7; /* Soft Premium Pink-Purple Background */
   --card: #ffffff; /* Clean White Cards */
-  --text: #1a2c24; /* Dark Forest Greenish Charcoal for High Contrast Readability */
-  --muted: #5a7568; /* Elegant Muted Forest Gray */
-  --border: #ffd3db; /* Soft Pink Border */
-  --radius: 16px; /* Elegant Curvy Modern Corners */
-  --shadow: 0 4px 20px rgba(11, 60, 42, 0.05); /* Soft Subtle Shadows */
+  --text: #1d0f26; /* High Contrast Dark Purpleish Charcoal */
+  --muted: #6e567a; /* Purplish Slate Gray for secondary info */
+  --border: #f3d4ef; /* Soft Pink-Purple Border */
+  --radius: 16px; /* Curvy Modern Corners */
+  --shadow: 0 4px 20px rgba(45, 14, 58, 0.05); /* Subtle Shadow */
 }
 
 * { box-sizing: border-box; }
 body {
   margin: 0;
   font-family: 'Sarabun', sans-serif;
+  font-size: 17px; /* Enlarged base size for 50+ aged users */
+  line-height: 1.6;
   background-color: var(--bg);
-  /* Minimalist Grid Pattern for Premium Aesthetic Feel */
-  background-image: radial-gradient(#ffe3e8 1.2px, transparent 1.2px);
+  /* Minimalist Grid Pattern for Premium Pink-Purple Aesthetic */
+  background-image: radial-gradient(#f4cef1 1.2px, transparent 1.2px);
   background-size: 24px 24px;
   color: var(--text);
   padding-bottom: 50px;
 }
 
 header.app-header {
-  background: linear-gradient(135deg, var(--primary), #11533c);
+  background: linear-gradient(135deg, var(--primary), #421456);
   color: #fff;
-  padding: 16px 20px;
+  padding: 18px 22px;
   position: sticky;
   top: 0;
   z-index: 50;
-  box-shadow: 0 4px 15px rgba(11, 60, 42, 0.15);
+  box-shadow: 0 4px 15px rgba(45, 14, 58, 0.2);
   display: flex;
   align-items: center;
-  gap: 16px;
-  border-bottom: 2px solid var(--secondary);
+  gap: 18px;
+  border-bottom: 3px solid var(--secondary);
 }
 header.app-header img.app-logo {
-  width: 58px;
-  height: 58px;
+  width: 64px;
+  height: 64px;
   border-radius: 50%;
   object-fit: cover;
   border: 3px solid var(--secondary);
@@ -61,16 +64,16 @@ header.app-header img.app-logo {
   box-shadow: 0 2px 8px rgba(0,0,0,0.15);
 }
 header.app-header .app-header-text { flex: 1; }
-header.app-header h1 { margin: 0; font-size: 18px; font-weight: 700; letter-spacing: 0.5px; }
-header.app-header p { margin: 4px 0 0; font-size: 12px; opacity: .88; }
+header.app-header h1 { margin: 0; font-size: 22px; font-weight: 700; letter-spacing: 0.5px; }
+header.app-header p { margin: 4px 0 0; font-size: 14px; opacity: .88; }
 
-.adl-dot { display: inline-block; width: 12px; height: 12px; border-radius: 50%; margin-right: 6px; vertical-align: middle; flex-shrink: 0; }
-.adl-dot.adl-1 { background: #2a9d8f; } /* Teal Green */
-.adl-dot.adl-2 { background: #e9c46a; } /* Warm Yellow */
-.adl-dot.adl-3 { background: #f4a261; } /* Sunset Orange */
-.adl-dot.adl-4 { background: #e76f51; } /* Soft Crimson */
+.adl-dot { display: inline-block; width: 14px; height: 14px; border-radius: 50%; margin-right: 8px; vertical-align: middle; flex-shrink: 0; }
+.adl-dot.adl-1 { background: #2a9d8f; } 
+.adl-dot.adl-2 { background: #e9c46a; } 
+.adl-dot.adl-3 { background: #f4a261; } 
+.adl-dot.adl-4 { background: #e76f51; } 
 
-.quota-badge { display: inline-block; padding: 10px 16px; border-radius: 12px; font-size: 13.5px; font-weight: 700; box-shadow: 0 2px 6px rgba(0,0,0,0.02); }
+.quota-badge { display: inline-block; padding: 12px 18px; border-radius: 12px; font-size: 15.5px; font-weight: 700; box-shadow: 0 2px 6px rgba(0,0,0,0.02); }
 .quota-badge.quota-green { background: #e8f5e9; color: #1b5e20; border: 1px solid #c8e6c9; }
 .quota-badge.quota-red { background: #ffebee; color: #c62828; border: 1px solid #ffcdd2; }
 .quota-badge.quota-orange { background: #fff3e0; color: #e65100; border: 1px solid #ffe0b2; }
@@ -80,23 +83,23 @@ header.app-header p { margin: 4px 0 0; font-size: 12px; opacity: .88; }
 nav.tabs {
   display: flex;
   overflow-x: auto;
-  background: rgba(255, 255, 255, 0.95);
+  background: rgba(255, 255, 255, 0.96);
   backdrop-filter: blur(8px);
   position: sticky;
-  top: 92px;
+  top: 104px;
   z-index: 49;
   box-shadow: 0 4px 10px rgba(0,0,0,.03);
   scrollbar-width: none;
-  border-bottom: 1px solid var(--border);
+  border-bottom: 1.5px solid var(--border);
 }
 nav.tabs::-webkit-scrollbar { display: none; }
 nav.tabs button {
   flex: 1 0 auto;
   background: none;
   border: none;
-  padding: 16px 14px;
+  padding: 18px 16px;
   font-family: inherit;
-  font-size: 13.5px;
+  font-size: 16px; /* Enlarged tab text for easier viewing */
   font-weight: 600;
   color: var(--muted);
   cursor: pointer;
@@ -107,10 +110,10 @@ nav.tabs button {
 nav.tabs button.active {
   color: var(--primary);
   border-bottom-color: var(--secondary);
-  background-color: #fff9fa;
+  background-color: #fdf6fd;
 }
 
-main { max-width: 960px; margin: 0 auto; padding: 16px; }
+main { max-width: 980px; margin: 0 auto; padding: 18px; }
 .tabpanel { display: none; }
 .tabpanel.active { display: block; animation: fade .3s cubic-bezier(0.4, 0, 0.2, 1); }
 @keyframes fade { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
@@ -119,31 +122,31 @@ main { max-width: 960px; margin: 0 auto; padding: 16px; }
   background: var(--card);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
-  border: 1px solid #ffe8ec;
-  padding: 20px;
-  margin-bottom: 16px;
+  border: 1.5px solid #fce6fa;
+  padding: 22px;
+  margin-bottom: 18px;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 .card:hover {
-  box-shadow: 0 6px 24px rgba(11, 60, 42, 0.08);
+  box-shadow: 0 6px 24px rgba(45, 14, 58, 0.08);
 }
 .card h3 {
-  margin: 0 0 14px;
-  font-size: 16px;
+  margin: 0 0 16px;
+  font-size: 19px; /* Enlarged title size */
   color: var(--primary);
   border-left: 4px solid var(--secondary);
-  padding-left: 10px;
+  padding-left: 12px;
 }
-.row { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
-.field { display: flex; flex-direction: column; gap: 6px; flex: 1; min-width: 140px; }
-.field label { font-size: 12px; color: var(--muted); font-weight: 700; letter-spacing: 0.2px; }
+.row { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
+.field { display: flex; flex-direction: column; gap: 8px; flex: 1; min-width: 150px; }
+.field label { font-size: 14.5px; color: var(--muted); font-weight: 700; letter-spacing: 0.2px; }
 
 select, input[type=text], input[type=number], input[type=tel], input[type=file], input[type=password], input[type=date], textarea {
   font-family: inherit;
-  padding: 11px 14px;
+  padding: 13px 16px; /* Increased padding for easier tapping */
   border: 1.5px solid var(--border);
   border-radius: 10px;
-  font-size: 14.5px;
+  font-size: 17px; /* Big readability font for input fields */
   background: #fff;
   color: var(--text);
   width: 100%;
@@ -152,17 +155,17 @@ select, input[type=text], input[type=number], input[type=tel], input[type=file],
 }
 select:focus, input:focus, textarea:focus {
   border-color: var(--secondary);
-  box-shadow: 0 0 0 3px rgba(255, 141, 161, 0.25);
-  background-color: #fff9fa;
+  box-shadow: 0 0 0 3px rgba(217, 70, 239, 0.25);
+  background-color: #fdf6fd;
 }
-textarea { resize: vertical; min-height: 70px; }
+textarea { resize: vertical; min-height: 80px; }
 
 .btn {
   border: none;
   border-radius: 10px;
-  padding: 11px 20px;
+  padding: 13px 22px; /* Bigger button size */
   font-family: inherit;
-  font-size: 14px;
+  font-size: 16px; /* Big button font */
   font-weight: 700;
   cursor: pointer;
   display: inline-flex;
@@ -171,100 +174,100 @@ textarea { resize: vertical; min-height: 70px; }
   gap: 8px;
   transition: all 0.2s ease;
 }
-.btn-primary { background: var(--primary); color: #fff; box-shadow: 0 2px 8px rgba(11,60,42,0.2); }
+.btn-primary { background: var(--primary); color: #fff; box-shadow: 0 2px 8px rgba(45,14,58,0.25); }
 .btn-primary:hover { background: var(--primary-dark); transform: translateY(-1px); }
-.btn-secondary { background: var(--secondary); color: var(--primary-dark); box-shadow: 0 2px 8px rgba(255,141,161,0.25); }
-.btn-secondary:hover { background: #ff768f; transform: translateY(-1px); }
+.btn-secondary { background: var(--secondary); color: #fff; box-shadow: 0 2px 8px rgba(217,70,239,0.25); }
+.btn-secondary:hover { background: #c026d3; transform: translateY(-1px); }
 .btn-danger { background: var(--danger); color: #fff; box-shadow: 0 2px 8px rgba(216,75,85,0.2); }
 .btn-danger:hover { background: #c23e47; transform: translateY(-1px); }
-.btn-ghost { background: #fdf2f4; color: var(--text); border: 1px solid var(--border); }
-.btn-ghost:hover { background: #ffe4e8; }
+.btn-ghost { background: #faf0f8; color: var(--text); border: 1px solid var(--border); }
+.btn-ghost:hover { background: #fcdcf5; }
 .btn:disabled { opacity: .5; cursor: not-allowed; transform: none !important; }
-.btn-sm { padding: 7px 12px; font-size: 12.5px; border-radius: 8px; }
+.btn-sm { padding: 8px 14px; font-size: 14.5px; border-radius: 8px; }
 
-.stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 12px; }
-.stat { background: #fffcfd; border: 1px solid var(--border); border-radius: 12px; padding: 12px 8px; text-align: center; }
-.stat b { display: block; font-size: 22px; color: var(--primary); margin-bottom: 2px; }
-.stat span { font-size: 11.5px; color: var(--muted); font-weight: 600; }
+.stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 14px; }
+.stat { background: #fdfafc; border: 1.5px solid var(--border); border-radius: 12px; padding: 14px 10px; text-align: center; }
+.stat b { display: block; font-size: 26px; color: var(--primary); margin-bottom: 2px; }
+.stat span { font-size: 13.5px; color: var(--muted); font-weight: 600; }
 
-table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
-th, td { padding: 10px 8px; text-align: left; border-bottom: 1px solid #ffe8ec; }
-th { color: var(--primary); font-weight: 700; font-size: 12.5px; text-transform: uppercase; letter-spacing: 0.3px; }
-tr:hover { background-color: #fffafb; }
+table { width: 100%; border-collapse: collapse; font-size: 16px; } /* Large readability table text */
+th, td { padding: 12px 10px; text-align: left; border-bottom: 1px solid #fce6fa; }
+th { color: var(--primary); font-weight: 700; font-size: 15px; text-transform: uppercase; letter-spacing: 0.3px; }
+tr:hover { background-color: #fdf6fd; }
 
-.progress-bar { background: #ffe4e8; border-radius: 20px; height: 10px; overflow: hidden; margin-top: 5px; }
-.progress-bar .fill { background: var(--primary); height: 100%; transition: width .3s ease; }
+.progress-bar { background: #fae3f8; border-radius: 20px; height: 12px; overflow: hidden; margin-top: 5px; }
+.progress-bar .fill { background: var(--secondary); height: 100%; transition: width .3s ease; }
 
-.breadcrumb { display: flex; gap: 8px; font-size: 13.5px; color: var(--primary); margin-bottom: 12px; flex-wrap: wrap; font-weight: 600; }
-.breadcrumb span { cursor: pointer; text-decoration: underline; color: #0f5c40; }
+.breadcrumb { display: flex; gap: 8px; font-size: 16px; color: var(--primary); margin-bottom: 12px; flex-wrap: wrap; font-weight: 600; }
+.breadcrumb span { cursor: pointer; text-decoration: underline; color: #421456; }
 .breadcrumb .sep { color: var(--muted); text-decoration: none; font-weight: 400; }
 
-.list-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 10px; border-bottom: 1px solid #ffe8ec; cursor: pointer; transition: background 0.2s ease; border-radius: 8px; }
-.list-item:hover { background: #fff5f6; }
-.list-item .meta { font-size: 12.5px; color: var(--muted); }
+.list-item { display: flex; justify-content: space-between; align-items: center; padding: 14px 12px; border-bottom: 1px solid #fce6fa; cursor: pointer; transition: background 0.2s ease; border-radius: 8px; }
+.list-item:hover { background: #fdf2fc; }
+.list-item .meta { font-size: 15px; color: var(--muted); }
 
-.photo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 12px; }
+.photo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 14px; }
 .photo-card { background: #fff; border: 1.5px solid var(--border); border-radius: 12px; overflow: hidden; box-shadow: var(--shadow); }
-.photo-card img { width: 100%; height: 110px; object-fit: cover; display: block; }
-.photo-card .pc-body { padding: 8px; font-size: 11.5px; line-height: 1.4; }
-.photo-card .pc-actions { display: flex; gap: 4px; padding: 0 8px 8px; }
+.photo-card img { width: 100%; height: 120px; object-fit: cover; display: block; }
+.photo-card .pc-body { padding: 10px; font-size: 13px; line-height: 1.4; }
+.photo-card .pc-actions { display: flex; gap: 4px; padding: 0 10px 10px; }
 
-.chip { background: #ffebee; color: #a12b40; border-radius: 18px; padding: 5px 12px; font-size: 12.5px; display: inline-flex; align-items: center; gap: 6px; font-weight: 600; border: 1px solid var(--border); }
-.chip button { background: none; border: none; color: var(--danger); cursor: pointer; font-weight: 700; font-size: 14px; padding: 0; }
+.chip { background: #fdf2fc; color: #8a1f81; border-radius: 18px; padding: 6px 14px; font-size: 14.5px; display: inline-flex; align-items: center; gap: 6px; font-weight: 600; border: 1px solid var(--border); }
+.chip button { background: none; border: none; color: var(--danger); cursor: pointer; font-weight: 700; font-size: 16px; padding: 0; }
 
-.modal-overlay { position: fixed; inset: 0; background: rgba(6, 36, 25, 0.5); display: none; align-items: center; justify-content: center; z-index: 200; padding: 16px; backdrop-filter: blur(4px); }
+.modal-overlay { position: fixed; inset: 0; background: rgba(25, 5, 36, 0.5); display: none; align-items: center; justify-content: center; z-index: 200; padding: 16px; backdrop-filter: blur(4px); }
 .modal-overlay.show { display: flex; }
-.modal-box { background: #fff; border-radius: var(--radius); max-width: 500px; width: 100%; max-height: 88vh; overflow-y: auto; padding: 22px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); border: 2px solid var(--border); }
-.modal-box h3 { margin-top: 0; color: var(--primary); font-size: 17px; border-left: 4px solid var(--secondary); padding-left: 10px; }
-.modal-actions { display: flex; justify-content: flex-end; gap: 10px; margin-top: 18px; }
+.modal-box { background: #fff; border-radius: var(--radius); max-width: 520px; width: 100%; max-height: 88vh; overflow-y: auto; padding: 24px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); border: 2.5px solid var(--border); }
+.modal-box h3 { margin-top: 0; color: var(--primary); font-size: 19px; border-left: 4px solid var(--secondary); padding-left: 12px; }
+.modal-actions { display: flex; justify-content: flex-end; gap: 10px; margin-top: 20px; }
 
 .toast-wrap { position: fixed; bottom: 20px; right: 20px; left: 20px; display: flex; flex-direction: column; align-items: flex-end; gap: 8px; z-index: 300; pointer-events: none; }
-.toast { background: #1a2c24; color: #fff; padding: 12px 20px; border-radius: 10px; font-size: 14px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); max-width: 340px; pointer-events: auto; }
+.toast { background: #1d0f26; color: #fff; padding: 14px 22px; border-radius: 10px; font-size: 15.5px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); max-width: 360px; pointer-events: auto; }
 .toast.success { background: #1b5e20; border-left: 4px solid #81c784; }
 .toast.error { background: #b71c1c; border-left: 4px solid #e57373; }
 
 .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; margin: 12px 0; }
-.calendar-grid .dow { font-size: 11.5px; text-align: center; color: var(--muted); font-weight: 700; }
-.calendar-grid .day { text-align: center; padding: 10px 0; border-radius: 10px; background: #fff5f6; cursor: pointer; font-size: 13.5px; border: 1px solid #ffd8e0; font-weight: 600; transition: all 0.15s ease; }
+.calendar-grid .dow { font-size: 13.5px; text-align: center; color: var(--muted); font-weight: 700; }
+.calendar-grid .day { text-align: center; padding: 12px 0; border-radius: 10px; background: #fdf2fc; cursor: pointer; font-size: 14.5px; border: 1px solid #f8d5f5; font-weight: 600; transition: all 0.15s ease; }
 .calendar-grid .day.selected { background: var(--primary); color: #fff; font-weight: 700; border-color: var(--primary); }
 .calendar-grid .day.empty { visibility: hidden; }
 
-.checkbox-group { display: flex; flex-direction: column; gap: 8px; margin-top: 6px; }
-.checkbox-item { display: flex; align-items: center; gap: 10px; font-size: 13.5px; cursor: pointer; font-weight: 500; }
-.checkbox-item input { width: 18px; height: 18px; flex-shrink: 0; accent-color: var(--primary); }
+.checkbox-group { display: flex; flex-direction: column; gap: 10px; margin-top: 8px; }
+.checkbox-item { display: flex; align-items: center; gap: 10px; font-size: 15.5px; cursor: pointer; font-weight: 500; }
+.checkbox-item input { width: 20px; height: 20px; flex-shrink: 0; accent-color: var(--primary); }
 
-.badge { padding: 3px 10px; border-radius: 12px; font-size: 11.5px; font-weight: 700; }
+.badge { padding: 4px 12px; border-radius: 12px; font-size: 13.5px; font-weight: 700; }
 .badge.normal { background: #e8f5e9; color: #2e7d32; border: 1px solid #c8e6c9; }
 .badge.obt { background: #ffebee; color: #c62828; border: 1px solid #ffcdd2; }
 
-.upload-progress { font-size: 13px; color: var(--primary); font-weight: 700; margin-top: 8px; }
-.muted { color: var(--muted); font-size: 12.5px; font-weight: 500; }
+.upload-progress { font-size: 14.5px; color: var(--primary); font-weight: 700; margin-top: 8px; }
+.muted { color: var(--muted); font-size: 14.5px; font-weight: 500; }
 #pdfRenderRoot { position: fixed; left: -99999px; top: 0; }
 .filter-bar { margin-bottom: 14px; }
-@media (max-width: 480px) { .stat b { font-size: 18px; } nav.tabs button { padding: 12px 8px; font-size: 12.5px; } }
+@media (max-width: 480px) { .stat b { font-size: 22px; } nav.tabs button { padding: 14px 10px; font-size: 14.5px; } }
 
-.login-overlay { position: fixed; inset: 0; background: linear-gradient(135deg, #fff0f3, #ffd3db); display: flex; align-items: center; justify-content: center; z-index: 1000; padding: 16px; }
-.login-box { background: #fff; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 40px rgba(11,60,42,0.15); max-width: 400px; width: 100%; border: 3px solid var(--secondary); }
-.login-banner { background: linear-gradient(135deg, var(--primary), #165b41); padding: 30px 20px 24px; text-align: center; color: #fff; border-bottom: 4px solid var(--secondary); }
-.login-banner .login-logo { width: 90px; height: 90px; border-radius: 50%; object-fit: cover; border: 3px solid var(--secondary); margin-bottom: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
-.login-banner h2 { font-size: 17px; margin: 0 0 6px; color: #fff; font-weight: 700; }
-.login-banner p { font-size: 12px; opacity: .9; margin: 0; line-height: 1.4; }
-.login-body { padding: 24px 28px; text-align: center; }
+.login-overlay { position: fixed; inset: 0; background: linear-gradient(135deg, #faf0f7, #f3d4ef); display: flex; align-items: center; justify-content: center; z-index: 1000; padding: 16px; }
+.login-box { background: #fff; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 40px rgba(45,14,58,0.15); max-width: 440px; width: 100%; border: 3px solid var(--secondary); }
+.login-banner { background: linear-gradient(135deg, var(--primary), #421456); padding: 32px 22px 26px; text-align: center; color: #fff; border-bottom: 4px solid var(--secondary); }
+.login-banner .login-logo { width: 96px; height: 96px; border-radius: 50%; object-fit: cover; border: 3px solid var(--secondary); margin-bottom: 14px; box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
+.login-banner h2 { font-size: 19px; margin: 0 0 6px; color: #fff; font-weight: 700; }
+.login-banner p { font-size: 13.5px; opacity: .9; margin: 0; line-height: 1.4; }
+.login-body { padding: 26px 30px; text-align: center; }
 .login-body .field { text-align: left; }
-.login-forgot { font-size: 12.5px; color: var(--primary); font-weight: 700; text-align: center; margin-top: 14px; cursor: pointer; text-decoration: underline; }
+.login-forgot { font-size: 14.5px; color: var(--primary); font-weight: 700; text-align: center; margin-top: 16px; cursor: pointer; text-decoration: underline; }
 .login-forgot:hover { color: var(--primary-dark); }
 
 header.app-header .app-header-user { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; flex-shrink: 0; }
-header.app-header .app-header-user span { font-size: 12px; opacity: .95; white-space: nowrap; font-weight: 600; }
+header.app-header .app-header-user span { font-size: 13.5px; opacity: .95; white-space: nowrap; font-weight: 600; }
 header.app-header .app-header-user .btn { background: rgba(255, 255, 255, 0.15); color: #fff; padding: 6px 12px; border: 1px solid rgba(255,255,255,0.25); }
 header.app-header .app-header-user .btn:hover { background: rgba(255, 255, 255, 0.3); }
 
-.role-tag { padding: 3px 10px; border-radius: 12px; font-size: 11px; font-weight: 700; }
+.role-tag { padding: 4px 10px; border-radius: 12px; font-size: 12px; font-weight: 700; }
 .role-tag.admin { background: #ffebee; color: #c62828; }
 .role-tag.cm { background: #e3f2fd; color: #0d47a1; }
 .role-tag.cg { background: #e8f5e9; color: #1b5e20; }
 
-.status-tag { padding: 4px 10px; border-radius: 12px; font-size: 11px; font-weight: 700; display: inline-block; }
+.status-tag { padding: 6px 12px; border-radius: 12px; font-size: 13px; font-weight: 700; display: inline-block; }
 .status-tag.approved { background: #e8f5e9; color: #2e7d32; border: 1px solid #c8e6c9; }
 .status-tag.pending { background: #fff8e1; color: #f57f17; border: 1px solid #ffecb3; }
 .status-tag.disabled { background: #ffebee; color: #c62828; border: 1px solid #ffcdd2; }
@@ -292,7 +295,7 @@ header.app-header .app-header-user .btn:hover { background: rgba(255, 255, 255, 
         </div>
       </div>
       <button class="btn btn-primary" id="loginBtn" style="margin-top:20px;width:100%;justify-content:center;">เข้าสู่ระบบ</button>
-      <p id="loginError" style="color:var(--danger);font-weight:700;font-size:12.5px;margin-top:10px;min-height:16px;"></p>
+      <p id="loginError" style="color:var(--danger);font-weight:700;font-size:13.5px;margin-top:10px;min-height:16px;"></p>
       <div class="login-forgot" id="loginRegisterLink">ยังไม่มีบัญชี? ลงทะเบียนที่นี่</div>
       <div class="login-forgot" id="loginPublicLink">เข้าดูข้อมูลทั่วไป (ไม่ต้องเข้าสู่ระบบ)</div>
       <div class="login-forgot" id="loginForgotLink">ลืมรหัสผ่าน / ติดต่อผู้ดูแลระบบ</div>
@@ -301,7 +304,7 @@ header.app-header .app-header-user .btn:hover { background: rgba(255, 255, 255, 
 </div>
 
 <div class="login-overlay" id="registerOverlay" style="display:none;z-index:1100;">
-  <div class="login-box" style="max-width:480px;">
+  <div class="login-box" style="max-width:500px;">
     <div class="login-banner">
       <img class="login-logo" id="registerLogo" alt="โลโก้ รพ.สต.บ้านดงสง่า">
       <h2>ลงทะเบียนผู้ใช้งานใหม่</h2>
@@ -363,7 +366,7 @@ header.app-header .app-header-user .btn:hover { background: rgba(255, 255, 255, 
           <input type="text" id="regVillageOther" placeholder="พิมพ์หมู่ที่" style="display:none;margin-top:4px;">
         </div>
       </div>
-      <p class="muted" style="text-align:left;margin-top:6px;font-size:11.5px;line-height:1.4;">* มีข้อมูลอำเภอ/ตำบล/หมู่บ้านแบบเลือกครบเฉพาะ จ.สกลนคร (อ.เจริญศิลป์ มีครบทุกตำบล ส่วนหมู่บ้านมีครบเฉพาะ ต.หนองแปน) พื้นที่อื่นกรุณาพิมพ์เอง</p>
+      <p class="muted" style="text-align:left;margin-top:6px;font-size:12.5px;line-height:1.4;">* มีข้อมูลอำเภอ/ตำบล/หมู่บ้านแบบเลือกครบเฉพาะ จ.สกลนคร (อ.เจริญศิลป์ มีครบทุกตำบล ส่วนหมู่บ้านมีครบเฉพาะ ต.หนองแปน) พื้นที่อื่นกรุณาพิมพ์เอง</p>
       <div class="field" style="margin-top:10px;">
         <label>หมายเลขโทรศัพท์</label>
         <input type="tel" id="regPhone" placeholder="เช่น 08xxxxxxxx">
@@ -378,7 +381,7 @@ header.app-header .app-header-user .btn:hover { background: rgba(255, 255, 255, 
       </div>
       <p class="muted" style="text-align:left;margin-top:10px;line-height:1.4;">* หลังลงทะเบียนแล้ว กรุณารอผู้ดูแลระบบกำหนดบทบาทและสิทธิ์การใช้งานก่อน จึงจะเข้าใช้งานฟังก์ชันต่างๆ ได้</p>
       <button class="btn btn-primary" id="regSubmitBtn" style="margin-top:16px;width:100%;justify-content:center;">ลงทะเบียน</button>
-      <p id="regError" style="color:var(--danger);font-weight:700;font-size:12.5px;margin-top:8px;min-height:16px;"></p>
+      <p id="regError" style="color:var(--danger);font-weight:700;font-size:13px;margin-top:8px;min-height:16px;"></p>
       <div class="login-forgot" id="regBackToLoginLink">มีบัญชีอยู่แล้ว? กลับไปเข้าสู่ระบบ</div>
     </div>
   </div>
@@ -393,8 +396,8 @@ header.app-header .app-header-user .btn:hover { background: rgba(255, 255, 255, 
   <div class="app-header-user">
     <span id="currentUserLabel"></span>
     <div style="display:flex;gap:6px;margin-top:4px;">
-      <button class="btn btn-ghost btn-sm" id="changePasswordBtn" style="display:none;font-size:11px;">🔑 เปลี่ยนรหัสผ่าน</button>
-      <button class="btn btn-ghost btn-sm" id="logoutBtn" style="font-size:11px;">ออกจากระบบ</button>
+      <button class="btn btn-ghost btn-sm" id="changePasswordBtn" style="display:none;font-size:12px;">🔑 เปลี่ยนรหัสผ่าน</button>
+      <button class="btn btn-ghost btn-sm" id="logoutBtn" style="font-size:12px;">ออกจากระบบ</button>
     </div>
   </div>
 </header>
@@ -403,10 +406,10 @@ header.app-header .app-header-user .btn:hover { background: rgba(255, 255, 255, 
   <button data-tab="dashboard" class="active">📊 ภาพรวม</button>
   <button data-tab="record">📷 บันทึกการเยี่ยม</button>
   <button data-tab="cg">👥 จัดการ CG</button>
-  <button data-tab="elderly">👴 จัดการผู้สูงอายุ</button>
+  <button data-tab="elderly">👴 จัดการผู้มีภาวะพึ่งพิง</button>
   <button data-tab="equipment">🛠 การจัดการอุปกรณ์</button>
   <button data-tab="pdf">📄 ออกรายงาน</button>
-  <button data-tab="history" style="display:none;">📜 ประวัติผู้สูงอายุ</button>
+  <button data-tab="history" style="display:none;">📜 ประวัติผู้มีภาวะพึ่งพิง</button>
   <button data-tab="users" style="display:none;">🔐 ผู้ใช้งาน</button>
 </nav>
 
@@ -464,7 +467,7 @@ header.app-header .app-header-user .btn:hover { background: rgba(255, 255, 255, 
       <div class="field"><label>CG</label><select id="recCg"></select></div>
       <div class="field"><label>ผู้สูงอายุ</label><select id="recElderly"></select></div>
     </div>
-    <div id="recInfoCard" class="muted" style="margin-top:10px;padding:8px;background:#fff8f9;border-radius:8px;"></div>
+    <div id="recInfoCard" class="muted" style="margin-top:10px;padding:8px;background:#fdf2fc;border-radius:8px;"></div>
   </div>
 
   <div class="card">
@@ -839,7 +842,7 @@ header.app-header .app-header-user .btn:hover { background: rgba(255, 255, 255, 
   </div>
   <div class="field" style="margin-top:8px;"><label>วันที่จำหน่าย</label><input type="date" id="dischargeDate"></div>
   <div class="field" style="margin-top:8px;"><label>หมายเหตุ</label><textarea id="dischargeNote"></textarea></div>
-  <p class="muted" style="margin-top:10px;line-height:1.4;">* ระบบจะย้ายชื่อและประวัติการดูแลทั้งหมดไปเก็บไว้ที่แท็บ "ประวัติผู้สูงอายุ" โดยอัตโนมัติ (มองเห็นได้เฉพาะ Admin และ CM)</p>
+  <p class="muted" style="margin-top:10px;line-height:1.4;">* ระบบจะย้ายชื่อและประวัติการดูแลทั้งหมดไปเก็บไว้ที่แท็บ "ประวัติผู้มีภาวะพึ่งพิง" โดยอัตโนมัติ (มองเห็นได้เฉพาะ Admin และ CM)</p>
   <div class="modal-actions"><button class="btn btn-ghost" onclick="closeModal('dischargeModal')">ยกเลิก</button><button class="btn btn-danger" id="dischargeSubmitBtn">ยืนยันการจำหน่าย</button></div>
 </div></div>
 
@@ -867,7 +870,7 @@ header.app-header .app-header-user .btn:hover { background: rgba(255, 255, 255, 
     <div class="field"><label>วันที่ได้รับการสนับสนุน</label><input type="date" id="eqDateReceived"></div>
     <div class="field"><label>วันที่ส่งคืน (ถ้ายังไม่คืน เว้นว่างไว้)</label><input type="date" id="eqDateReturned"></div>
   </div>
-  <h4 style="margin:18px 0 10px;font-size:14px;color:var(--primary);border-bottom:1px solid var(--border);padding-bottom:6px;">รายการครุภัณฑ์ / วัสดุการแพทย์ที่ขอรับการสนับสนุน</h4>
+  <h4 style="margin:18px 0 10px;font-size:15px;color:var(--primary);border-bottom:1.5px solid var(--border);padding-bottom:6px;">รายการครุภัณฑ์ / วัสดุการแพทย์ที่ขอรับการสนับสนุน</h4>
   <div id="eqItemRows" style="display:flex;flex-direction:column;gap:12px;"></div>
   <button type="button" class="btn btn-ghost btn-sm" id="eqAddRowBtn" style="margin-top:12px;">➕ เพิ่มอีกรายการ</button>
   <div class="modal-actions"><button class="btn btn-ghost" onclick="closeModal('equipmentModal')">ยกเลิก</button><button class="btn btn-primary" id="eqSaveBtn">บันทึก</button></div>
@@ -875,7 +878,7 @@ header.app-header .app-header-user .btn:hover { background: rgba(255, 255, 255, 
 
 <div class="modal-overlay" id="cgVisitStatusModal"><div class="modal-box" style="max-width:520px;">
   <h3 id="cgVisitStatusTitle">รายชื่อผู้สูงอายุ</h3>
-  <p class="muted">สถานะการเยี่ยมประจำเดือนที่เลือกเทียบกับเป้าหมายครั้งที่กำหนดต่อคน (ตั้งค่าที่แท็บ "จัดการผู้สูงอายุ")</p>
+  <p class="muted">สถานะการเยี่ยมประจำเดือนที่เลือกเทียบกับเป้าหมายครั้งที่กำหนดต่อคน (ตั้งค่าที่แท็บ "จัดการผู้มีภาวะพึ่งพิง")</p>
   <div id="cgVisitStatusList" style="display:flex;flex-direction:column;gap:8px;margin-top:12px;max-height:60vh;overflow-y:auto;"></div>
   <div class="modal-actions"><button class="btn btn-ghost" onclick="closeModal('cgVisitStatusModal')">ปิด</button></div>
 </div></div>
@@ -894,7 +897,7 @@ header.app-header .app-header-user .btn:hover { background: rgba(255, 255, 255, 
     <label>ยืนยันรหัสผ่านใหม่</label>
     <input type="password" id="cpConfirmPassword">
   </div>
-  <p id="cpError" style="color:var(--danger);font-weight:700;font-size:12.5px;margin-top:6px;min-height:16px;"></p>
+  <p id="cpError" style="color:var(--danger);font-weight:700;font-size:13.5px;margin-top:6px;min-height:16px;"></p>
   <div class="modal-actions"><button class="btn btn-ghost" onclick="closeModal('changePasswordModal')">ยกเลิก</button><button class="btn btn-primary" id="cpSaveBtn">บันทึกรหัสผ่านใหม่</button></div>
 </div></div>
 
@@ -910,7 +913,7 @@ header.app-header .app-header-user .btn:hover { background: rgba(255, 255, 255, 
     <label>ยืนยันรหัสผ่านใหม่</label>
     <input type="password" id="arpConfirmPassword">
   </div>
-  <p id="arpError" style="color:var(--danger);font-weight:700;font-size:12.5px;margin-top:6px;min-height:16px;"></p>
+  <p id="arpError" style="color:var(--danger);font-weight:700;font-size:13.5px;margin-top:6px;min-height:16px;"></p>
   <div class="modal-actions"><button class="btn btn-ghost" onclick="closeModal('adminResetPwModal')">ยกเลิก</button><button class="btn btn-primary" id="arpSaveBtn">บันทึก</button></div>
 </div></div>
 
@@ -918,7 +921,7 @@ header.app-header .app-header-user .btn:hover { background: rgba(255, 255, 255, 
   <h3>🔧 กำหนดสิทธิ์การเข้าถึงฟังก์ชัน</h3>
   <input type="hidden" id="upUserId">
   <p class="muted" id="upUserLabel"></p>
-  <div id="upCheckboxes" style="display:flex;flex-direction:column;gap:10px;margin-top:12px;background:#fff9fa;padding:12px;border-radius:10px;border:1px dashed var(--border);"></div>
+  <div id="upCheckboxes" style="display:flex;flex-direction:column;gap:10px;margin-top:12px;background:#fdf6fd;padding:12px;border-radius:10px;border:1.5px dashed var(--border);"></div>
   <div class="modal-actions"><button class="btn btn-ghost" onclick="closeModal('userPermissionsModal')">ยกเลิก</button><button class="btn btn-primary" id="upSaveBtn">บันทึกสิทธิ์</button></div>
 </div></div>
 
@@ -942,7 +945,7 @@ header.app-header .app-header-user .btn:hover { background: rgba(255, 255, 255, 
     <label>เชื่อมโยงกับ CG คนไหนในทะเบียน</label>
     <select id="euCgCode"><option value="">-- ไม่เชื่อมโยง --</option></select>
   </div>
-  <p id="euError" style="color:var(--danger);font-weight:700;font-size:12.5px;margin-top:6px;min-height:16px;"></p>
+  <p id="euError" style="color:var(--danger);font-weight:700;font-size:13.5px;margin-top:6px;min-height:16px;"></p>
   <div class="modal-actions"><button class="btn btn-ghost" onclick="closeModal('editUserModal')">ยกเลิก</button><button class="btn btn-primary" id="euSaveBtn">บันทึก</button></div>
 </div></div>
 
@@ -956,6 +959,7 @@ header.app-header .app-header-user .btn:hover { background: rgba(255, 255, 255, 
 <div id="pdfRenderRoot"></div>
 
 <script>
+// --- CRITICAL CONFIG & CONSTANTS ---
 const FIREBASE_CONFIG = {
   apiKey: "AIzaSyDwmk2wi_aeV0K1bO1PAkGYSOjA7gQOKBE",
   authDomain: "ltc-nongpan.firebaseapp.com",
@@ -967,14 +971,20 @@ const FIREBASE_CONFIG = {
 };
 const IMGBB_API_KEY = "8eb385d52c3d5019be8763d5074e9026";
 const FACILITY_NAME = "รพ.สต.บ้านดงสง่า";
-/* FIXED syntax error inside string representation */
 const LOGO_BASE64 = "https://i.ibb.co/r2dzhNJ2/Gemini-Generated-Image-m1uvi8m1uvi8m1uv.png";
 
 firebase.initializeApp(FIREBASE_CONFIG);
+const db = firebase.database();
+
+// --- PREVENT TIMING/INITIALIZATION BUGS: DECLARE DOM ELEMENTS UPFRONT ---
+const recMonthSel = document.getElementById('recMonth');
+const recYearSel = document.getElementById('recYear');
+const dashMonthSel = document.getElementById('dashMonth');
+const dashYearSel = document.getElementById('dashYear');
+
 document.getElementById('appHeaderLogo').src = LOGO_BASE64;
 document.getElementById('loginLogo').src = LOGO_BASE64;
 document.getElementById('registerLogo').src = LOGO_BASE64;
-const db = firebase.database();
 
 const TH_MONTHS_FULL = ["มกราคม","กุมภาพันธ์","มีนาคม","เมษายน","พฤษภาคม","มิถุนายน","กรกฎาคม","สิงหาคม","กันยายน","ตุลาคม","พฤศจิกายน","ธันวาคม"];
 const TH_MONTHS_ABBR = ["ม.ค.","ก.พ.","มี.ค.","เม.ย.","พ.ค.","มิ.ย.","ก.ค.","ส.ค.","ก.ย.","ต.ค.","พ.ย.","ธ.ค."];
@@ -1074,7 +1084,7 @@ function shuffleArray(arr){
   return a;
 }
 
-function fillMonthYearSelects(monthSel, yearSel, opts){
+function fillMonthYearSelects(monthSel, yearSel){
   monthSel.innerHTML = TH_MONTHS_FULL.map((m,i)=>`<option value="${i+1}">${m}</option>`).join('');
   const now = new Date();
   const curYear = beYear(now.getFullYear());
@@ -1123,6 +1133,7 @@ const CHAROENSIN_SAKON_SUBDISTRICTS = [
   "บ้านเหล่า","เจริญศิลป์","โคกศิลา","ทุ่งแก","หนองแปน"
 ];
 
+// --- REALTIME LISTENERS ---
 db.ref('cgs').on('value', snap=>{ STATE.cgs = snap.val()||{}; onDataChange(); });
 db.ref('elderly').on('value', snap=>{ STATE.elderly = snap.val()||{}; onDataChange(); });
 db.ref('visits').on('value', snap=>{ STATE.visits = snap.val()||{}; onDataChange(); });
@@ -1154,28 +1165,12 @@ function onDataChange(){
   }
 }
 
+// --- REMOVED ALL SAMPLE ELDERLY & CG SEEDS ---
 function maybeSeedData(){
-  if(Object.keys(STATE.cgs).length>0 || Object.keys(STATE.elderly).length>0) return;
-  const now = Date.now();
-  const cgSeed = {
-    CG001:{name:'นางสาวเสาวนีย์ จันทร์่อ่อน',   idCard:'', phone:'', moo:'', houseNo:'', status:'active', createdAt:now},
-    CG002:{name:'นางสาววิรัตน์ เรือระดา', idCard:'', phone:'', moo:'', houseNo:'', status:'active', createdAt:now},
-    CG003:{name:'นางนาวัน โสบุญ',          idCard:'', phone:'', moo:'', houseNo:'', status:'active', createdAt:now},
-    CG004:{name:'นางสาวพิสมัย คำพรมมา',   idCard:'', phone:'', moo:'', houseNo:'', status:'active', createdAt:now},
-    CG005:{name:'นางสาวณิฌา สมบัติพล',    idCard:'', phone:'', moo:'', houseNo:'', status:'active', createdAt:now}
-  };
-  db.ref('cgs').set(cgSeed);
-  toast('เริ่มต้นระบบ: สร้างข้อมูล CG จำนวน 5 คนเรียบร้อยแล้ว กรุณาเพิ่มผู้สูงอายุที่แท็บ "จัดการผู้สูงอายุ"', 'success');
+  // Kept clean as requested. No auto-generated CG names.
 }
-
 function maybeSeedElderlyImport(){
-  if(Object.keys(STATE.elderly).length>0) return;
-  const now = Date.now();
-  const elderlySeed = {
-   
-  };
-  db.ref('elderly').set(elderlySeed);
-  toast('นำเข้าข้อมูลผู้สูงอายุจากทะเบียน LTC ปีงบประมาณ 68 จำนวน 62 คนเรียบร้อยแล้ว', 'success');
+  // Kept clean as requested. No auto-generated Elderly names.
 }
 
 document.querySelectorAll('nav.tabs button').forEach(btn=>{
@@ -1205,10 +1200,10 @@ const TAB_DEFS = [
   {key:'dashboard', label:'📊 ภาพรวม'},
   {key:'record',    label:'📷 บันทึกการเยี่ยม'},
   {key:'cg',        label:'👥 จัดการ CG'},
-  {key:'elderly',   label:'👴 จัดการผู้สูงอายุ'},
+  {key:'elderly',   label:'👴 จัดการผู้มีภาวะพึ่งพิง'},
   {key:'equipment', label:'🛠 การจัดการอุปกรณ์'},
   {key:'pdf',       label:'📄 ออกรายงาน'},
-  {key:'history',   label:'📜 ประวัติผู้สูงอายุ'},
+  {key:'history',   label:'📜 ประวัติผู้มีภาวะพึ่งพิง'},
   {key:'users',     label:'🔐 ผู้ใช้งาน'}
 ];
 function permsFromRoleTabs(role){
@@ -1301,7 +1296,6 @@ function renderRegDistrictOptions(){
   renderRegSubdistrictOptions();
 }
 
-/* FIXED subdistrict and village option rendering error */
 function renderRegSubdistrictOptions(){
   const prov = document.getElementById('regProvince').value;
   const dist = document.getElementById('regDistrict').value;
@@ -1321,7 +1315,6 @@ function renderRegVillageOptions(){
   const sub = document.getElementById('regSubdistrict').value;
   const vilSel = document.getElementById('regVillage');
   const vilOther = document.getElementById('regVillageOther');
-  /* FIXED: Match subdistrict Nong Paen */
   if(sub === 'หนองแปน'){
     vilSel.innerHTML = VILLAGES.map(v=>`<option value="${v.moo}">หมู่ ${v.moo} ${v.name}</option>`).join('');
     vilSel.style.display = ''; vilOther.style.display = 'none'; vilOther.value = '';
@@ -1425,7 +1418,7 @@ function renderUsersTable(){
     const personTypeText = u.personType ? (PERSON_TYPE_LABELS[u.personType]||u.personType) : '-';
     const personTypeLabel = u.position ? `${personTypeText} (${u.position})` : personTypeText;
     const permBtn = (u.role === 'admin')
-      ? '<span class="muted" style="font-size:12px;">เข้าถึงได้ทุกฟังก์ชัน</span>'
+      ? '<span class="muted" style="font-size:14px;">เข้าถึงได้ทุกฟังก์ชัน</span>'
       : `<button class="btn btn-ghost btn-sm" onclick="openUserPermissions('${uid}')">🔧 สิทธิ์การใช้งาน</button>`;
     return `<tr>
       <td><b>${u.displayName||'-'}</b></td>
@@ -1515,7 +1508,7 @@ function openUserPermissions(uid){
   document.getElementById('upUserLabel').textContent = `${u.displayName} (${ROLE_LABELS[u.role]||u.role} - ${u.username})`;
   const perms = u.permissions || permsFromRoleTabs(u.role || 'unassigned');
   document.getElementById('upCheckboxes').innerHTML = TAB_DEFS.map(t=>`
-    <label class="checkbox-item" style="font-size:13.5px; margin-bottom: 4px;">
+    <label class="checkbox-item" style="font-size:15px; margin-bottom: 4px;">
       <input type="checkbox" data-permkey="${t.key}" ${perms[t.key] ? 'checked' : ''}> ${t.label}
     </label>`).join('');
   openModal('userPermissionsModal');
@@ -1593,7 +1586,8 @@ function renderCgSelects(){
   const opts = Object.keys(STATE.cgs).sort().map(code=>`<option value="${code}">${code} - ${STATE.cgs[code].name}</option>`).join('');
   ['recCg','elderlyCg','pdfCgFilter','filterElderlyCg','elderlyReportCgFilter'].forEach(id=>{
     const el = document.getElementById(id);
-    const keepFirst = (id==='pdfCgFilter' || id==='elderlyReportCgFilter') ? '<option value="">ทุก CG</option>' : (id==='filterElderlyCg' ? '<option value="">ทั้งหมด</option>' : '');
+    if (!el) return;
+    const keepFirst = (id=='pdfCgFilter' || id=='elderlyReportCgFilter') ? '<option value="">ทุก CG</option>' : (id=='filterElderlyCg' ? '<option value="">ทั้งหมด</option>' : '');
     const prevVal = el.value;
     el.innerHTML = keepFirst + opts;
     if(prevVal) el.value = prevVal;
@@ -1604,6 +1598,7 @@ function renderCgSelects(){
 function renderRecElderlyOptions(){
   const cg = document.getElementById('recCg').value;
   const sel = document.getElementById('recElderly');
+  if (!sel) return;
   const list = Object.keys(STATE.elderly).filter(id=>STATE.elderly[id].cgCode===cg && STATE.elderly[id].status!=='discharged').sort();
   sel.innerHTML = list.map(id=>{
     const e = STATE.elderly[id];
@@ -1616,9 +1611,11 @@ function renderRecElderlyOptions(){
 function renderRecInfoCard(){
   const id = document.getElementById('recElderly').value;
   const box = document.getElementById('recInfoCard');
-  if(!id || !STATE.elderly[id]){ box.innerHTML=''; renderRecQuotaBadge(); return; }
+  if(!id || !STATE.elderly[id]){ if(box) box.innerHTML=''; renderRecQuotaBadge(); return; }
   const e = STATE.elderly[id];
-  box.innerHTML = `<span class="adl-dot adl-${e.adlGroup||''}"></span>อายุ <b>${e.age||'-'}</b> ปี | ADL กลุ่ม <b>${e.adlGroup||'-'}</b> | เยี่ยม <b>${e.visitsPerMonth||'-'}</b> ครั้ง/เดือน | โหมด PDF: <span class="badge ${e.pdfMode}">${e.pdfMode==='obt'?'อบต.':'ปกติ'}</span>`;
+  if (box) {
+    box.innerHTML = `<span class="adl-dot adl-${e.adlGroup||''}"></span>อายุ <b>${e.age||'-'}</b> ปี | ADL กลุ่ม <b>${e.adlGroup||'-'}</b> | เยี่ยม <b>${e.visitsPerMonth||'-'}</b> ครั้ง/เดือน | โหมด PDF: <span class="badge ${e.pdfMode}">${e.pdfMode==='obt'?'อบต.':'ปกติ'}</span>`;
+  }
   renderRecQuotaBadge();
 }
 document.getElementById('recCg').addEventListener('change', renderRecElderlyOptions);
@@ -1649,8 +1646,6 @@ function renderRecQuotaBadge(){
   badge.innerHTML = `${icon} ต้องเยี่ยม <b>${required}</b> ครั้ง/เดือน | เยี่ยมแล้ว <b>${visited}</b> ครั้ง | คงเหลือ <b>${remaining}</b> ครั้ง`;
 }
 
-const dashMonthSel = document.getElementById('dashMonth');
-const dashYearSel = document.getElementById('dashYear');
 fillMonthYearSelects(dashMonthSel, dashYearSel);
 dashMonthSel.addEventListener('change', renderDashboard);
 dashYearSel.addEventListener('change', renderDashboard);
@@ -1665,25 +1660,35 @@ function visitsInMonth(m,y){
 }
 
 function renderDashboard(){
+  if (!dashMonthSel || !dashYearSel) return;
   const m = dashMonthSel.value, y = dashYearSel.value;
   const monthVisits = visitsInMonth(m,y);
   const elderlyIds = Object.keys(STATE.elderly).filter(id=>STATE.elderly[id].status!=='discharged');
   const visitedElderlyIds = new Set(monthVisits.map(([id,v])=>v.elderlyId));
-  document.getElementById('statMonth').innerHTML = `
-    <div class="stat"><b>${Object.keys(STATE.cgs).length}</b><span>CG ทั้งหมด</span></div>
-    <div class="stat"><b>${elderlyIds.length}</b><span>ผู้สูงอายุ</span></div>
-    <div class="stat"><b>${visitedElderlyIds.size}</b><span>เยี่ยมแล้ว</span></div>
-    <div class="stat"><b>${elderlyIds.length - visitedElderlyIds.size}</b><span>ยังไม่ได้เยี่ยม</span></div>
-    <div class="stat"><b>${monthVisits.length}</b><span>จำนวนครั้ง</span></div>
-  `;
+  
+  const statMonthEl = document.getElementById('statMonth');
+  if (statMonthEl) {
+    statMonthEl.innerHTML = `
+      <div class="stat"><b>${Object.keys(STATE.cgs).length}</b><span>CG ทั้งหมด</span></div>
+      <div class="stat"><b>${elderlyIds.length}</b><span>ผู้สูงอายุ</span></div>
+      <div class="stat"><b>${visitedElderlyIds.size}</b><span>เยี่ยมแล้ว</span></div>
+      <div class="stat"><b>${elderlyIds.length - visitedElderlyIds.size}</b><span>ยังไม่ได้เยี่ยม</span></div>
+      <div class="stat"><b>${monthVisits.length}</b><span>จำนวนครั้ง</span></div>
+    `;
+  }
+  
   const totalVisits = Object.keys(STATE.visits||{}).length;
   const normalCount = elderlyIds.filter(id=>STATE.elderly[id].pdfMode!=='obt').length;
   const obtCount = elderlyIds.filter(id=>STATE.elderly[id].pdfMode==='obt').length;
-  document.getElementById('statTotal').innerHTML = `
-    <div class="stat"><b>${totalVisits}</b><span>บันทึกทั้งหมด</span></div>
-    <div class="stat"><b>${normalCount}</b><span>โหมดปกติ</span></div>
-    <div class="stat"><b>${obtCount}</b><span>โหมด อบต.</span></div>
-  `;
+  const statTotalEl = document.getElementById('statTotal');
+  if (statTotalEl) {
+    statTotalEl.innerHTML = `
+      <div class="stat"><b>${totalVisits}</b><span>บันทึกทั้งหมด</span></div>
+      <div class="stat"><b>${normalCount}</b><span>โหมดปกติ</span></div>
+      <div class="stat"><b>${obtCount}</b><span>โหมด อบต.</span></div>
+    `;
+  }
+  
   const rows = Object.keys(STATE.cgs).sort().map(code=>{
     const cg = STATE.cgs[code];
     const elderlyOfCg = elderlyIds.filter(id=>STATE.elderly[id].cgCode===code);
@@ -1704,7 +1709,10 @@ function renderDashboard(){
       <td>${quotaBadge}</td>
       <td><button class="btn btn-ghost btn-sm" onclick="openCgVisitStatus('${code}')">👁 ดูรายชื่อ</button></td></tr>`;
   }).join('');
-  document.getElementById('cgStatusTable').innerHTML = rows || '<tr><td colspan="6" class="muted">ยังไม่มีข้อมูล CG</td></tr>';
+  const statusTable = document.getElementById('cgStatusTable');
+  if (statusTable) {
+    statusTable.innerHTML = rows || '<tr><td colspan="6" class="muted">ยังไม่มีข้อมูล CG</td></tr>';
+  }
 }
 
 function openCgVisitStatus(cgCode){
@@ -1718,8 +1726,8 @@ function openCgVisitStatus(cgCode){
     const target = parseInt(e.visitsPerMonth,10) || 5;
     const count = monthVisits.filter(([vid,v])=>v.elderlyId===id).length;
     const met = count >= target;
-    return `<div style="display:flex;justify-content:space-between;align-items:center;padding:10px;border:1.5px solid var(--border);border-radius:10px;gap:10px;background:#fffcfc;">
-      <div><b>${e.name}</b><br><span class="muted" style="font-size:12px;">เยี่ยมแล้ว ${count}/${target} ครั้ง</span></div>
+    return `<div style="display:flex;justify-content:space-between;align-items:center;padding:12px;border:1.5px solid var(--border);border-radius:10px;gap:10px;background:#fdfafc;">
+      <div><b>${e.name}</b><br><span class="muted" style="font-size:13.5px;">เยี่ยมแล้ว ${count}/${target} ครั้ง</span></div>
       <span class="status-tag ${met ? 'approved' : 'disabled'}">${met ? 'เยี่ยมครบตามเกณฑ์' : 'ยังไม่ครบเกณฑ์'}</span>
     </div>`;
   }).join('');
@@ -1729,6 +1737,7 @@ function openCgVisitStatus(cgCode){
 
 function renderDrillBreadcrumb(){
   const bc = document.getElementById('drillBreadcrumb');
+  if (!bc) return;
   let html = `<span onclick="drillGoto(1)">CG ทั้งหมด</span>`;
   if(STATE.drillLevel>=2){ html += `<span class="sep">›</span><span onclick="drillGoto(2)">${STATE.cgs[STATE.drillCg]?.name||STATE.drillCg}</span>`; }
   if(STATE.drillLevel>=3){ html += `<span class="sep">›</span><span>${STATE.elderly[STATE.drillElderly]?.name||STATE.drillElderly}</span>`; }
@@ -1743,6 +1752,7 @@ function drillGoto(level){
 function renderDrill(){
   renderDrillBreadcrumb();
   const content = document.getElementById('drillContent');
+  if (!content) return;
   if(STATE.drillLevel===1){
     const rows = Object.keys(STATE.cgs).sort().map(code=>{
       const count = Object.values(STATE.visits||{}).filter(v=>v.cgCode===code).length;
@@ -1809,8 +1819,6 @@ function deleteVisit(vid){
   });
 }
 
-const recMonthSel = document.getElementById('recMonth');
-const recYearSel = document.getElementById('recYear');
 fillMonthYearSelects(recMonthSel, recYearSel);
 recMonthSel.addEventListener('change', renderRecQuotaBadge);
 recYearSel.addEventListener('change', renderRecQuotaBadge);
@@ -2195,7 +2203,7 @@ document.getElementById('dischargeSubmitBtn').addEventListener('click', ()=>{
     });
     db.ref().update(updates).then(()=>{
       closeModal('dischargeModal');
-      toast(`ย้ายข้อมูล "${e.name}" ไปยังแท็บ "ประวัติผู้สูงอายุ" เรียบร้อยแล้ว (เหตุผล: ${reasonLabel})`, 'success');
+      toast(`ย้ายข้อมูล "${e.name}" ไปยังแท็บ "ประวัติผู้มีภาวะพึ่งพิง" เรียบร้อยแล้ว (เหตุผล: ${reasonLabel})`, 'success');
     });
   });
 });
@@ -2251,7 +2259,7 @@ function buildHistoryReportPageHTML(rowsChunk, pageNo, totalPages){
     </tr>`).join('');
   return `
   <div style="width:754px;height:1083px;font-family:'Sarabun',sans-serif;background:#fff;display:flex;flex-direction:column;">
-    <div style="background:linear-gradient(120deg,#0b3c2a,#165b41);padding:14px 24px;display:flex;align-items:center;gap:14px;color:#fff;">
+    <div style="background:linear-gradient(120deg,#2d0e3a,#421456);padding:14px 24px;display:flex;align-items:center;gap:14px;color:#fff;">
       <img src="${LOGO_BASE64}" style="width:58px;height:58px;border-radius:50%;object-fit:cover;border:2px solid #fff;flex-shrink:0;">
       <div style="flex:1;text-align:center;">
         <div style="font-size:18px;font-weight:700;">รายงานประวัติผู้สูงอายุและผู้มีภาวะพึ่งพิงที่เคยได้รับการดูแล</div>
@@ -2262,7 +2270,7 @@ function buildHistoryReportPageHTML(rowsChunk, pageNo, totalPages){
     <div style="padding:16px 24px;flex:1;">
       <table style="width:100%;border-collapse:collapse;font-size:11.5px;">
         <thead>
-          <tr style="background:#fff0f3;color:#0b3c2a;">
+          <tr style="background:#fdf2fc;color:#2d0e3a;">
             <th style="padding:6px 8px;border:1px solid #ddd;">ลำดับ</th>
             <th style="padding:6px 8px;border:1px solid #ddd;">ชื่อ-สกุล</th>
             <th style="padding:6px 8px;border:1px solid #ddd;">อายุ</th>
@@ -2376,16 +2384,16 @@ function buildVisitBlockHTML(v, elderly, cg){
   const careText = careList.length ? careList.join(', ') : '-';
 
   return `
-  <div style="display:flex;gap:10px;border:1.5px solid #ffd3db;border-radius:10px;padding:10px;margin-bottom:8px;background:#fff9fa;">
-    <img src="${v.photoUrl}" crossorigin="anonymous" style="width:118px;height:140px;object-fit:cover;border-radius:8px;flex-shrink:0;border:1.5px solid #ffd3db;">
+  <div style="display:flex;gap:10px;border:1.5px solid #f3d4ef;border-radius:10px;padding:10px;margin-bottom:8px;background:#fdf6fd;">
+    <img src="${v.photoUrl}" crossorigin="anonymous" style="width:118px;height:140px;object-fit:cover;border-radius:8px;flex-shrink:0;border:1.5px solid #f3d4ef;">
     <div style="flex:1;font-size:10.5px;line-height:1.5;color:#1B2E3B;">
-      <div style="font-weight:700;font-size:13.5px;color:#0b3c2a;">${elderly.name} <span style="font-weight:400;color:#5B7A8C;font-size:10.5px;">(วันที่ ${formatThaiDate(v.visitDate)})</span></div>
+      <div style="font-weight:700;font-size:13.5px;color:#2d0e3a;">${elderly.name} <span style="font-weight:400;color:#5B7A8C;font-size:10.5px;">(วันที่ ${formatThaiDate(v.visitDate)})</span></div>
       <div style="margin-top:2px;"><b>CG ผู้เยี่ยม:</b> ${cg?cg.name:'-'}</div>
       <div>BP: <b>${bpText}</b> mmHg &nbsp;|&nbsp; PR: <b>${prText}</b> &nbsp;|&nbsp; RR: <b>${rrText}</b> &nbsp;|&nbsp; T: <b>${tText}</b>°C &nbsp;|&nbsp; ADL: <b>${adlText}</b> คะแนน</div>
       <div>ยา: ${medLabel} &nbsp;|&nbsp; กิจวัตร: ${dailyLabel} &nbsp;|&nbsp; ขับถ่าย: ${elimLabel}</div>
       <div>อาหาร: ${feedLabel} (${foodLabel})</div>
-      <div>กิจกรรมที่ทำ: <span style="color:#0f5c40; font-weight:600;">${careText}</span></div>
-      ${v.note ? `<div style="margin-top:4px;background:#fff;padding:4px 6px;border-radius:4px;border-left:2.5px solid #ff8da1;"><b>ปัญหาสำคัญ:</b> ${v.note}</div>` : ''}
+      <div>กิจกรรมที่ทำ: <span style="color:#d946ef; font-weight:600;">${careText}</span></div>
+      ${v.note ? `<div style="margin-top:4px;background:#fff;padding:4px 6px;border-radius:4px;border-left:2.5px solid #d946ef;"><b>ปัญหาสำคัญ:</b> ${v.note}</div>` : ''}
     </div>
   </div>`;
 }
@@ -2397,26 +2405,26 @@ function buildPdfPageHTML(elderly, cg, visitsChunk, monthLabel, yearBE){
   const adlSummary = adlScores.length ? `${adlScores.join(', ')} คะแนน` : '-';
 
   return `
-  <div style="width:754px;height:1083px;font-family:'Sarabun',sans-serif;background:#fff;display:flex;flex-direction:column;border:4px solid #ffd3db;box-sizing:border-box;">
-    <div style="background:linear-gradient(120deg,#0b3c2a,#165b41);padding:14px 24px;display:flex;align-items:center;gap:14px;color:#fff;border-bottom:3px solid #ff8da1;">
+  <div style="width:754px;height:1083px;font-family:'Sarabun',sans-serif;background:#fff;display:flex;flex-direction:column;border:4px solid #f3d4ef;box-sizing:border-box;">
+    <div style="background:linear-gradient(120deg,#2d0e3a,#421456);padding:14px 24px;display:flex;align-items:center;gap:14px;color:#fff;border-bottom:3px solid #d946ef;">
       <img src="${LOGO_BASE64}" style="width:58px;height:58px;border-radius:50%;object-fit:cover;border:2px solid #fff;flex-shrink:0;">
       <div style="flex:1;text-align:center;">
         <div style="font-size:18px;font-weight:700;letter-spacing:0.5px;">สรุปการเยี่ยมผู้สูงอายุที่มีภาวะพึ่งพิง</div>
-        <div style="font-size:12.5px;margin-top:2px;color:#ff8da1;font-weight:700;">ประจำเดือน ${monthLabel} ${yearBE}</div>
+        <div style="font-size:12.5px;margin-top:2px;color:#d946ef;font-weight:700;">ประจำเดือน ${monthLabel} ${yearBE}</div>
         <div style="font-size:11px;margin-top:2px;opacity:.92;">${FACILITY_NAME} ต.หนองแปน อ.เจริญศิลป์ จ.สกลนคร</div>
       </div>
       <div style="width:58px;flex-shrink:0;"></div>
     </div>
 
-    <div style="text-align:center;font-size:16px;font-weight:700;color:#0b3c2a;padding:12px 0 4px;">${elderly.name}</div>
+    <div style="text-align:center;font-size:16px;font-weight:700;color:#2d0e3a;padding:12px 0 4px;">${elderly.name}</div>
     <div style="text-align:center;font-size:11.5px;color:#5B7A8C;padding-bottom:8px;">อายุ ${elderly.age||'-'} ปี &nbsp;|&nbsp; CG ผู้ดูแล: ${cg?cg.name:'-'} &nbsp;|&nbsp; จำนวน ${visitsChunk.length} ครั้งในหน้านี้</div>
 
     <div style="padding:0 24px;flex:1;">
       ${blocks}
     </div>
 
-    <div style="margin:6px 24px 0;background:#fff0f3;border-radius:10px;padding:12px 16px;border:1px solid #ffd3db;">
-      <div style="font-size:12.5px;font-weight:700;color:#0b3c2a;margin-bottom:4px;">📝 สรุปรายงาน</div>
+    <div style="margin:6px 24px 0;background:#fdf2fc;border-radius:10px;padding:12px 16px;border:1px solid #f3d4ef;">
+      <div style="font-size:12.5px;font-weight:700;color:#2d0e3a;margin-bottom:4px;">📝 สรุปรายงาน</div>
       <div style="font-size:11px;color:#1B2E3B;">คะแนน ADL แต่ละครั้ง: <b>${adlSummary}</b></div>
       <div style="font-size:11px;color:#1B2E3B;margin-top:2px;">ปัญหาสำคัญที่พบในช่วงนี้: ${notedIssues.length ? notedIssues.join(' | ') : 'ไม่พบปัญหาเด่นชัด'}</div>
     </div>
@@ -2606,8 +2614,8 @@ function buildElderlyReportPdfPageHTML(rowsChunk, monthLabel, yBE, pageNo, total
       <td style="padding:5px 6px;border:1px solid #ddd;">${r.statusLabel}</td>
     </tr>`).join('');
   return `
-  <div style="width:1050px;height:743px;font-family:'Sarabun',sans-serif;background:#fff;display:flex;flex-direction:column;border:3px solid #ff8da1;box-sizing:border-box;">
-    <div style="background:linear-gradient(120deg,#0b3c2a,#165b41);padding:14px 24px;display:flex;align-items:center;gap:14px;color:#fff;border-bottom:3px solid #ff8da1;">
+  <div style="width:1050px;height:743px;font-family:'Sarabun',sans-serif;background:#fff;display:flex;flex-direction:column;border:3px solid #d946ef;box-sizing:border-box;">
+    <div style="background:linear-gradient(120deg,#2d0e3a,#421456);padding:14px 24px;display:flex;align-items:center;gap:14px;color:#fff;border-bottom:3px solid #d946ef;">
       <img src="${LOGO_BASE64}" style="width:52px;height:52px;border-radius:50%;object-fit:cover;border:2px solid #fff;flex-shrink:0;">
       <div style="flex:1;text-align:center;">
         <div style="font-size:17px;font-weight:700;">รายงานข้อมูลผู้สูงอายุ (สถานะทั้งหมด)</div>
@@ -2618,7 +2626,7 @@ function buildElderlyReportPdfPageHTML(rowsChunk, monthLabel, yBE, pageNo, total
     <div style="padding:14px 20px;flex:1;">
       <table style="width:100%;border-collapse:collapse;font-size:11px;">
         <thead>
-          <tr style="background:#fff0f3;color:#0b3c2a;">
+          <tr style="background:#fdf2fc;color:#2d0e3a;">
             <th style="padding:5px 6px;border:1px solid #ddd;">ลำดับ</th>
             <th style="padding:5px 6px;border:1px solid #ddd;">ชื่อ-สกุล</th>
             <th style="padding:5px 6px;border:1px solid #ddd;">อายุ</th>
@@ -2806,6 +2814,93 @@ function openEditEquipment(id){
   rowsWrap.querySelectorAll('.eq-remove-row').forEach(btn=>btn.style.display='none');
   openModal('equipmentModal');
 }
+function eqCategoryLabel(cat){ return cat === 'durable' ? 'ครุภัณฑ์การแพทย์' : 'วัสดุการแพทย์'; }
+
+function buildEquipmentRequestPageHTML(data){
+  const itemRows = data.items.map((it,idx)=>`
+    <tr>
+      <td style="padding:7px 6px;border:1px solid #ddd;text-align:center;">${idx+1}</td>
+      <td style="padding:7px 6px;border:1px solid #ddd;">${eqCategoryLabel(it.category)}</td>
+      <td style="padding:7px 6px;border:1px solid #ddd;"><b>${it.itemType||'-'}</b>${it.itemCode?` <span style="color:#888;">(${it.itemCode})</span>`:''}</td>
+      <td style="padding:7px 6px;border:1px solid #ddd;text-align:center;">${it.quantity||'-'}</td>
+    </tr>`).join('');
+  return `
+  <div style="width:754px;min-height:1083px;font-family:'Sarabun',sans-serif;background:#fff;display:flex;flex-direction:column;">
+    <div style="background:linear-gradient(120deg,#2d0e3a,#421456);padding:16px 24px;display:flex;align-items:center;gap:14px;color:#fff;">
+      <img src="${LOGO_BASE64}" style="width:60px;height:60px;border-radius:50%;object-fit:cover;border:2px solid #fff;flex-shrink:0;">
+      <div style="flex:1;text-align:center;">
+        <div style="font-size:18px;font-weight:700;">เอกสารบันทึกการเบิก/ยืมอุปกรณ์ผู้มีภาวะพึ่งพิง</div>
+        <div style="font-size:13px;font-weight:600;margin-top:2px;">${FACILITY_NAME}</div>
+        <div style="font-size:11px;margin-top:2px;opacity:.92;">ต.หนองแปน อ.เจริญศิลป์ จ.สกลนคร</div>
+      </div>
+      <div style="width:60px;flex-shrink:0;"></div>
+    </div>
+    <div style="padding:20px 26px;flex:1;">
+      <table style="width:100%;border-collapse:collapse;font-size:13px;margin-bottom:16px;">
+        <tr>
+          <td style="padding:6px 4px;width:130px;color:#555;">ชื่อผู้สูงอายุ/ผู้มีภาวะพึ่งพิง</td>
+          <td style="padding:6px 4px;border-bottom:1px solid #999;"><b>${data.elderlyName||'-'}</b></td>
+        </tr>
+        <tr>
+          <td style="padding:6px 4px;color:#555;">เบอร์โทร</td>
+          <td style="padding:6px 4px;border-bottom:1px solid #999;">${data.relativePhone||'-'}</td>
+        </tr>
+        <tr>
+          <td style="padding:6px 4px;color:#555;">วันที่ได้รับการสนับสนุน</td>
+          <td style="padding:6px 4px;border-bottom:1px solid #999;">${data.dateReceived ? formatThaiDate(data.dateReceived,true) : '-'}</td>
+        </tr>
+      </table>
+      <table style="width:100%;border-collapse:collapse;font-size:12.5px;">
+        <thead>
+          <tr style="background:#fdf2fc;color:#2d0e3a;">
+            <th style="padding:7px 6px;border:1px solid #ddd;">ลำดับ</th>
+            <th style="padding:7px 6px;border:1px solid #ddd;">หมวดหมู่</th>
+            <th style="padding:7px 6px;border:1px solid #ddd;">รายการ</th>
+            <th style="padding:7px 6px;border:1px solid #ddd;">จำนวน</th>
+          </tr>
+        </thead>
+        <tbody>${itemRows}</tbody>
+      </table>
+      <div style="margin-top:70px;display:flex;justify-content:space-around;text-align:center;font-size:13px;">
+        <div>
+          <div style="margin-bottom:36px;">ลงชื่อ .............................................. ผู้ขอเบิก/ยืม</div>
+          <div>( .............................................. )</div>
+          <div style="margin-top:6px;">วันที่ ............./............./.............</div>
+        </div>
+        <div>
+          <div style="margin-bottom:36px;">ลงชื่อ .............................................. ผู้อนุมัติ</div>
+          <div>( .............................................. )</div>
+          <div style="margin-top:6px;">วันที่ ............./............./.............</div>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center;font-size:10.5px;color:#777;border-top:1px solid #eee;padding:8px 0;margin-top:10px;">
+      ${FACILITY_NAME} ต.หนองแปน อ.เจริญศิลป์ จ.สกลนคร
+    </div>
+  </div>`;
+}
+
+async function generateEquipmentRequestPDF(data){
+  const root = document.getElementById('pdfRenderRoot');
+  try{
+    const { jsPDF } = window.jspdf;
+    const pdf = new jsPDF({ orientation:'portrait', unit:'mm', format:'a4' });
+    root.innerHTML = buildEquipmentRequestPageHTML(data);
+    await new Promise(r=>setTimeout(r,300));
+    const target = root.firstElementChild;
+    const canvas = await html2canvas(target, { scale:2, useCORS:true, backgroundColor:'#ffffff' });
+    const imgData = canvas.toDataURL('image/jpeg',0.92);
+    pdf.addImage(imgData,'JPEG',0,0,210,297);
+    const safeDate = data.dateReceived || new Date().toISOString().slice(0,10);
+    pdf.save(`เอกสารเบิกยืมอุปกรณ์_${data.elderlyName||''}_${safeDate}.pdf`);
+  }catch(err){
+    console.error(err);
+    toast('เกิดข้อผิดพลาดขณะสร้างเอกสาร PDF: '+err.message,'error');
+  }finally{
+    root.innerHTML = '';
+  }
+}
+
 document.getElementById('eqSaveBtn').addEventListener('click', ()=>{
   const editId = document.getElementById('eqEditId').value;
   const elderlyId = document.getElementById('eqElderly').value;
@@ -2814,6 +2909,7 @@ document.getElementById('eqSaveBtn').addEventListener('click', ()=>{
   const dateReturned = document.getElementById('eqDateReturned').value;
   if(!elderlyId){ toast('กรุณาเลือกผู้สูงอายุ','error'); return; }
   const elderly = STATE.elderly[elderlyId];
+  const elderlyName = elderly?elderly.name:'';
 
   const rowEls = Array.from(document.querySelectorAll('#eqItemRows .eq-item-row'));
   const items = [];
@@ -2831,25 +2927,30 @@ document.getElementById('eqSaveBtn').addEventListener('click', ()=>{
   if(editId){
     const it = items[0];
     const data = {
-      elderlyId, elderlyName: elderly?elderly.name:'',
+      elderlyId, elderlyName,
       relativePhone, itemCode: it.itemCode, category: it.category, itemType: it.itemType,
       quantity: it.quantity, dateReceived, dateReturned, createdAt: Date.now()
     };
-    db.ref('equipment/'+editId).update(data).then(()=>{ toast('บันทึกสำเร็จ','success'); closeModal('equipmentModal'); });
+    db.ref('equipment/'+editId).update(data).then(async ()=>{
+      toast('บันทึกสำเร็จ','success');
+      closeModal('equipmentModal');
+      await generateEquipmentRequestPDF({ elderlyName, relativePhone, dateReceived, items });
+    });
   } else {
     const updates = {};
     const ts = Date.now();
     items.forEach((it, i)=>{
       const id = 'EQ' + ts + '_' + i;
       updates['equipment/'+id] = {
-        elderlyId, elderlyName: elderly?elderly.name:'',
+        elderlyId, elderlyName,
         relativePhone, itemCode: it.itemCode, category: it.category, itemType: it.itemType,
         quantity: it.quantity, dateReceived, dateReturned, createdAt: ts
       };
     });
-    db.ref().update(updates).then(()=>{
+    db.ref().update(updates).then(async ()=>{
       toast(`บันทึกสำเร็จ (${items.length} รายการ)`,'success');
       closeModal('equipmentModal');
+      await generateEquipmentRequestPDF({ elderlyName, relativePhone, dateReceived, items });
     });
   }
 });
@@ -2870,12 +2971,12 @@ function buildEquipmentSummaryPageHTML(stats, filterLabel){
       <td style="padding:5px 4px;border-bottom:1px solid #eee;text-align:center;">${e.dateReceived?formatThaiDate(e.dateReceived):'-'}</td>
     </tr>`).join('');
   return `
-  <div style="width:754px;height:1083px;font-family:'Sarabun',sans-serif;background:#fff;display:flex;flex-direction:column;border:4px solid #ffd3db;box-sizing:border-box;">
-    <div style="background:linear-gradient(120deg,#0b3c2a,#165b41);padding:16px 24px;display:flex;align-items:center;gap:14px;color:#fff;border-bottom:3px solid #ff8da1;">
+  <div style="width:754px;height:1083px;font-family:'Sarabun',sans-serif;background:#fff;display:flex;flex-direction:column;border:4px solid #f3d4ef;box-sizing:border-box;">
+    <div style="background:linear-gradient(120deg,#2d0e3a,#421456);padding:16px 24px;display:flex;align-items:center;gap:14px;color:#fff;border-bottom:3px solid #d946ef;">
       <img src="${LOGO_BASE64}" style="width:64px;height:64px;border-radius:50%;object-fit:cover;border:2px solid #fff;flex-shrink:0;">
       <div style="flex:1;text-align:center;">
         <div style="font-size:19px;font-weight:700;letter-spacing:0.5px;">ทะเบียนคุมครุภัณฑ์และวัสดุการแพทย์</div>
-        <div style="font-size:12px;margin-top:2px;color:#ff8da1;font-weight:700;">สรุปยอดรายการ${filterLabel}</div>
+        <div style="font-size:12px;margin-top:2px;color:#d946ef;font-weight:700;">สรุปยอดรายการ${filterLabel}</div>
         <div style="font-size:11px;margin-top:2px;opacity:.92;">${FACILITY_NAME} ต.หนองแปน อ.เจริญศิลป์ จ.สกลนคร</div>
       </div>
       <div style="width:64px;flex-shrink:0;"></div>
@@ -2883,12 +2984,12 @@ function buildEquipmentSummaryPageHTML(stats, filterLabel){
 
     <div style="padding:22px 26px;flex:1;">
       <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:18px;">
-        <div style="background:#fff0f3;border:1px solid #ffd3db;border-radius:12px;padding:14px 8px;text-align:center;">
-          <div style="font-size:22px;font-weight:700;color:#0b3c2a;">${stats.totalRecords}</div>
+        <div style="background:#fdf2fc;border:1px solid #f3d4ef;border-radius:12px;padding:14px 8px;text-align:center;">
+          <div style="font-size:22px;font-weight:700;color:#2d0e3a;">${stats.totalRecords}</div>
           <div style="font-size:11px;color:#5b7568;font-weight:600;">รายการทั้งหมด</div>
         </div>
-        <div style="background:#fff0f3;border:1px solid #ffd3db;border-radius:12px;padding:14px 8px;text-align:center;">
-          <div style="font-size:22px;font-weight:700;color:#0b3c2a;">${stats.totalQuantity}</div>
+        <div style="background:#fdf2fc;border:1px solid #f3d4ef;border-radius:12px;padding:14px 8px;text-align:center;">
+          <div style="font-size:22px;font-weight:700;color:#2d0e3a;">${stats.totalQuantity}</div>
           <div style="font-size:11px;color:#5b7568;font-weight:600;">จำนวนชิ้นรวม</div>
         </div>
         <div style="background:#ffebee;border:1px solid #ffccd5;border-radius:12px;padding:14px 8px;text-align:center;">
@@ -2901,15 +3002,15 @@ function buildEquipmentSummaryPageHTML(stats, filterLabel){
         </div>
       </div>
 
-      <div style="font-size:13px;font-weight:700;color:#0b3c2a;margin-bottom:8px;border-left:4px solid #ff8da1;padding-left:8px;">📋 รายการที่ยังไม่คืน (สำหรับติดตาม)</div>
+      <div style="font-size:13px;font-weight:700;color:#2d0e3a;margin-bottom:8px;border-left:4px solid #d946ef;padding-left:8px;">📋 รายการที่ยังไม่คืน (สำหรับติดตาม)</div>
       <table style="width:100%;border-collapse:collapse;font-size:11px;">
         <thead>
-          <tr style="background:#fff0f3;">
-            <th style="padding:6px 4px;text-align:center;color:#0b3c2a;border:1px solid #ffd3db;">ลำดับ</th>
-            <th style="padding:6px 4px;text-align:left;color:#0b3c2a;border:1px solid #ffd3db;">ชื่อผู้สูงอายุ</th>
-            <th style="padding:6px 4px;text-align:left;color:#0b3c2a;border:1px solid #ffd3db;">เบอร์โทรญาติ</th>
-            <th style="padding:6px 4px;text-align:left;color:#0b3c2a;border:1px solid #ffd3db;">ประเภทครุภัณฑ์</th>
-            <th style="padding:6px 4px;text-align:center;color:#0b3c2a;border:1px solid #ffd3db;">วันที่ได้รับ</th>
+          <tr style="background:#fdf2fc;">
+            <th style="padding:6px 4px;text-align:center;color:#2d0e3a;border:1px solid #f3d4ef;">ลำดับ</th>
+            <th style="padding:6px 4px;text-align:left;color:#2d0e3a;border:1px solid #f3d4ef;">ชื่อผู้สูงอายุ</th>
+            <th style="padding:6px 4px;text-align:left;color:#2d0e3a;border:1px solid #f3d4ef;">เบอร์โทรญาติ</th>
+            <th style="padding:6px 4px;text-align:left;color:#2d0e3a;border:1px solid #f3d4ef;">ประเภทครุภัณฑ์</th>
+            <th style="padding:6px 4px;text-align:center;color:#2d0e3a;border:1px solid #f3d4ef;">วันที่ได้รับ</th>
           </tr>
         </thead>
         <tbody>${pendingRows || '<tr><td colspan="5" style="padding:8px;text-align:center;color:#5B7A8C;">ไม่มีรายการค้างคืน</td></tr>'}</tbody>
@@ -2938,8 +3039,8 @@ function buildEquipmentRegistryPageHTML(rowsChunk, pageNo, totalPages){
       <td style="padding:6px 4px;border-bottom:1px solid #eee;text-align:center;"><b>${statusText}</b></td>
     </tr>`;}).join('');
   return `
-  <div style="width:754px;height:1083px;font-family:'Sarabun',sans-serif;background:#fff;display:flex;flex-direction:column;border:4px solid #ffd3db;box-sizing:border-box;">
-    <div style="background:linear-gradient(120deg,#0b3c2a,#165b41);padding:16px 24px;display:flex;align-items:center;gap:14px;color:#fff;border-bottom:3px solid #ff8da1;">
+  <div style="width:754px;height:1083px;font-family:'Sarabun',sans-serif;background:#fff;display:flex;flex-direction:column;border:4px solid #f3d4ef;box-sizing:border-box;">
+    <div style="background:linear-gradient(120deg,#2d0e3a,#421456);padding:16px 24px;display:flex;align-items:center;gap:14px;color:#fff;border-bottom:3px solid #d946ef;">
       <img src="${LOGO_BASE64}" style="width:60px;height:60px;border-radius:50%;object-fit:cover;border:2px solid #fff;flex-shrink:0;">
       <div style="flex:1;text-align:center;">
         <div style="font-size:19px;font-weight:700;letter-spacing:0.5px;">ทะเบียนคุมครุภัณฑ์และวัสดุการแพทย์</div>
@@ -2953,15 +3054,15 @@ function buildEquipmentRegistryPageHTML(rowsChunk, pageNo, totalPages){
           <col style="width:6%"><col style="width:16%"><col style="width:12%"><col style="width:13%"><col style="width:20%"><col style="width:12%"><col style="width:8%"><col style="width:13%">
         </colgroup>
         <thead>
-          <tr style="background:#fff0f3;color:#0b3c2a;">
-            <th style="padding:7px 4px;text-align:center;border:1px solid #ffd3db;">ลำดับ</th>
-            <th style="padding:7px 4px;text-align:left;border:1px solid #ffd3db;">ชื่อผู้สูงอายุ</th>
-            <th style="padding:7px 4px;text-align:left;border:1px solid #ffd3db;">เบอร์โทรญาติ</th>
-            <th style="padding:7px 4px;text-align:left;border:1px solid #ffd3db;">เลขครุภัณฑ์</th>
-            <th style="padding:7px 4px;text-align:left;border:1px solid #ffd3db;">ประเภทครุภัณฑ์</th>
-            <th style="padding:7px 4px;text-align:center;border:1px solid #ffd3db;">วันที่ได้รับ</th>
-            <th style="padding:7px 4px;text-align:center;border:1px solid #ffd3db;">จำนวน</th>
-            <th style="padding:7px 4px;text-align:center;border:1px solid #ffd3db;">สถานะการคืน</th>
+          <tr style="background:#fdf2fc;color:#2d0e3a;">
+            <th style="padding:7px 4px;text-align:center;border:1px solid #f3d4ef;">ลำดับ</th>
+            <th style="padding:7px 4px;text-align:left;border:1px solid #f3d4ef;">ชื่อผู้สูงอายุ</th>
+            <th style="padding:7px 4px;text-align:left;border:1px solid #f3d4ef;">เบอร์โทรญาติ</th>
+            <th style="padding:7px 4px;text-align:left;border:1px solid #f3d4ef;">เลขครุภัณฑ์</th>
+            <th style="padding:7px 4px;text-align:left;border:1px solid #f3d4ef;">ประเภทครุภัณฑ์</th>
+            <th style="padding:7px 4px;text-align:center;border:1px solid #f3d4ef;">วันที่ได้รับ</th>
+            <th style="padding:7px 4px;text-align:center;border:1px solid #f3d4ef;">จำนวน</th>
+            <th style="padding:7px 4px;text-align:center;border:1px solid #f3d4ef;">สถานะการคืน</th>
           </tr>
         </thead>
         <tbody>${tableRows}</tbody>
