@@ -11,30 +11,30 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 
 <style>
 :root {
-  --primary: #2d0e3a; /* Deep Forest Purple - Elegant Contrast */
-  --primary-dark: #190524; /* Darker Purple */
-  --secondary: #d946ef; /* Vibrant Pink-Purple (Fuchsia) Accent */
-  --danger: #d84b55; /* Modern Coral Red */
-  --bg: #faf0f7; /* Soft Premium Pink-Purple Background */
-  --card: #ffffff; /* Clean White Cards */
-  --text: #1d0f26; /* High Contrast Dark Purpleish Charcoal */
-  --muted: #6e567a; /* Purplish Slate Gray for secondary info */
-  --border: #f3d4ef; /* Soft Pink-Purple Border */
-  --radius: 16px; /* Curvy Modern Corners */
-  --shadow: 0 4px 20px rgba(45, 14, 58, 0.05); /* Subtle Shadow */
+  --primary: #2d0e3a;
+  --primary-dark: #190524;
+  --secondary: #d946ef;
+  --danger: #d84b55;
+  --bg: #faf0f7;
+  --card: #ffffff;
+  --text: #1d0f26;
+  --muted: #6e567a;
+  --border: #f3d4ef;
+  --radius: 16px;
+  --shadow: 0 4px 20px rgba(45, 14, 58, 0.05);
 }
 
 * { box-sizing: border-box; }
 body {
   margin: 0;
   font-family: 'Sarabun', sans-serif;
-  font-size: 17px; /* Enlarged base size for 50+ aged users */
+  font-size: 17px;
   line-height: 1.6;
   background-color: var(--bg);
-  /* Minimalist Grid Pattern for Premium Pink-Purple Aesthetic */
   background-image: radial-gradient(#f4cef1 1.2px, transparent 1.2px);
   background-size: 24px 24px;
   color: var(--text);
@@ -68,10 +68,10 @@ header.app-header h1 { margin: 0; font-size: 22px; font-weight: 700; letter-spac
 header.app-header p { margin: 4px 0 0; font-size: 14px; opacity: .88; }
 
 .adl-dot { display: inline-block; width: 14px; height: 14px; border-radius: 50%; margin-right: 8px; vertical-align: middle; flex-shrink: 0; }
-.adl-dot.adl-1 { background: #2a9d8f; } 
-.adl-dot.adl-2 { background: #e9c46a; } 
-.adl-dot.adl-3 { background: #f4a261; } 
-.adl-dot.adl-4 { background: #e76f51; } 
+.adl-dot.adl-1 { background: #2a9d8f; }
+.adl-dot.adl-2 { background: #e9c46a; }
+.adl-dot.adl-3 { background: #f4a261; }
+.adl-dot.adl-4 { background: #e76f51; }
 
 .quota-badge { display: inline-block; padding: 12px 18px; border-radius: 12px; font-size: 15.5px; font-weight: 700; box-shadow: 0 2px 6px rgba(0,0,0,0.02); }
 .quota-badge.quota-green { background: #e8f5e9; color: #1b5e20; border: 1px solid #c8e6c9; }
@@ -99,7 +99,7 @@ nav.tabs button {
   border: none;
   padding: 18px 16px;
   font-family: inherit;
-  font-size: 16px; /* Enlarged tab text for easier viewing */
+  font-size: 16px;
   font-weight: 600;
   color: var(--muted);
   cursor: pointer;
@@ -127,12 +127,10 @@ main { max-width: 980px; margin: 0 auto; padding: 18px; }
   margin-bottom: 18px;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
-.card:hover {
-  box-shadow: 0 6px 24px rgba(45, 14, 58, 0.08);
-}
+.card:hover { box-shadow: 0 6px 24px rgba(45, 14, 58, 0.08); }
 .card h3 {
   margin: 0 0 16px;
-  font-size: 19px; /* Enlarged title size */
+  font-size: 19px;
   color: var(--primary);
   border-left: 4px solid var(--secondary);
   padding-left: 12px;
@@ -143,10 +141,10 @@ main { max-width: 980px; margin: 0 auto; padding: 18px; }
 
 select, input[type=text], input[type=number], input[type=tel], input[type=file], input[type=password], input[type=date], textarea {
   font-family: inherit;
-  padding: 13px 16px; /* Increased padding for easier tapping */
+  padding: 13px 16px;
   border: 1.5px solid var(--border);
   border-radius: 10px;
-  font-size: 17px; /* Big readability font for input fields */
+  font-size: 17px;
   background: #fff;
   color: var(--text);
   width: 100%;
@@ -163,9 +161,9 @@ textarea { resize: vertical; min-height: 80px; }
 .btn {
   border: none;
   border-radius: 10px;
-  padding: 13px 22px; /* Bigger button size */
+  padding: 13px 22px;
   font-family: inherit;
-  font-size: 16px; /* Big button font */
+  font-size: 16px;
   font-weight: 700;
   cursor: pointer;
   display: inline-flex;
@@ -190,7 +188,7 @@ textarea { resize: vertical; min-height: 80px; }
 .stat b { display: block; font-size: 26px; color: var(--primary); margin-bottom: 2px; }
 .stat span { font-size: 13.5px; color: var(--muted); font-weight: 600; }
 
-table { width: 100%; border-collapse: collapse; font-size: 16px; } /* Large readability table text */
+table { width: 100%; border-collapse: collapse; font-size: 16px; }
 th, td { padding: 12px 10px; text-align: left; border-bottom: 1px solid #fce6fa; }
 th { color: var(--primary); font-weight: 700; font-size: 15px; text-transform: uppercase; letter-spacing: 0.3px; }
 tr:hover { background-color: #fdf6fd; }
@@ -235,6 +233,10 @@ tr:hover { background-color: #fdf6fd; }
 .checkbox-group { display: flex; flex-direction: column; gap: 10px; margin-top: 8px; }
 .checkbox-item { display: flex; align-items: center; gap: 10px; font-size: 15.5px; cursor: pointer; font-weight: 500; }
 .checkbox-item input { width: 20px; height: 20px; flex-shrink: 0; accent-color: var(--primary); }
+
+.adl-block { border:1.5px solid var(--border); border-radius:12px; padding:12px 14px; background:#fdfafc; margin-bottom:10px; }
+.adl-block .adl-title { font-weight:700; color:var(--primary); margin-bottom:8px; font-size:16px; }
+.adl-opts { display:flex; flex-wrap:wrap; gap:8px 22px; }
 
 .badge { padding: 4px 12px; border-radius: 12px; font-size: 13.5px; font-weight: 700; }
 .badge.normal { background: #e8f5e9; color: #2e7d32; border: 1px solid #c8e6c9; }
@@ -326,7 +328,7 @@ header.app-header .app-header-user .btn:hover { background: rgba(255, 255, 255, 
       </div>
       <div class="field" id="regCmPositionWrap" style="margin-top:10px;display:none;">
         <label>ตำแหน่งงานของ CM</label>
-        <input type="text" id="regCmPosition" placeholder="ระบุตำแหน่งงาน">
+        <input type="text" id="regCmPosition" placeholder="ระบุตำแหน่งงาน เช่น นักวิชาการสาธารณสุขปฏิบัติการ">
       </div>
       <div class="field" id="regStaffPositionWrap" style="margin-top:10px;display:none;">
         <label>ตำแหน่ง</label>
@@ -409,6 +411,7 @@ header.app-header .app-header-user .btn:hover { background: rgba(255, 255, 255, 
   <button data-tab="elderly">👴 จัดการผู้มีภาวะพึ่งพิง</button>
   <button data-tab="equipment">🛠 การจัดการอุปกรณ์</button>
   <button data-tab="pdf">📄 ออกรายงาน</button>
+  <button data-tab="summary">📈 สรุปผลการดำเนินงาน</button>
   <button data-tab="history" style="display:none;">📜 ประวัติผู้มีภาวะพึ่งพิง</button>
   <button data-tab="users" style="display:none;">🔐 ผู้ใช้งาน</button>
 </nav>
@@ -544,7 +547,9 @@ header.app-header .app-header-user .btn:hover { background: rgba(255, 255, 255, 
           <option value="3">3. อาหารแข็ง</option>
         </select>
       </div>
-      <div class="field"><label>คะแนน ADL (0-20)</label><input type="number" id="recAdlScore" min="0" max="20" placeholder="0-20"></div>
+      <div class="field"><label>คะแนน ADL รวม (คำนวณอัตโนมัติจากแบบประเมิน)</label>
+        <input type="number" id="recAdlScore" min="0" max="20" readonly style="background:#f7eef7;font-weight:700;">
+      </div>
     </div>
     <div class="field" style="margin-top:14px;">
       <label>กิจกรรมที่ได้ทำในการดูแล (เลือกได้หลายข้อ)</label>
@@ -559,7 +564,14 @@ header.app-header .app-header-user .btn:hover { background: rgba(255, 255, 255, 
   </div>
 
   <div class="card">
-    <h3>5. อัปโหลดรูปภาพ</h3>
+    <h3>5. แบบประเมินความสามารถในการดำเนินชีวิตประจำวัน (ADL – Barthel Index)</h3>
+    <p class="muted">ติ๊กเลือกระดับความสามารถในแต่ละหัวข้อ ระบบจะรวมคะแนนให้อัตโนมัติ (เต็ม 20 คะแนน)</p>
+    <div id="recAdlForm" style="margin-top:12px;"></div>
+    <div id="recAdlSummary" class="quota-badge quota-blue" style="margin-top:8px;"></div>
+  </div>
+
+  <div class="card">
+    <h3>6. อัปโหลดรูปภาพ</h3>
     <input type="file" id="recPhotos" accept="image/*" multiple>
     <div class="muted" id="recPhotoCount" style="margin-top:6px;font-weight:700;color:var(--primary);"></div>
     <div class="field" style="margin-top:12px;"><label>ปัญหาสำคัญของคนไข้คนนี้คือ (ถ้ามี)</label><textarea id="recNote"></textarea></div>
@@ -600,15 +612,18 @@ header.app-header .app-header-user .btn:hover { background: rgba(255, 255, 255, 
       <div class="field"><label>กรองตามโหมด PDF</label><select id="filterElderlyMode"><option value="">ทั้งหมด</option><option value="normal">ปกติ</option><option value="obt">อบต.</option></select></div>
       <button class="btn btn-primary btn-sm" id="addElderlyBtn" style="align-self:flex-end;">+ เพิ่มผู้สูงอายุ</button>
     </div>
-    <table style="min-width: 900px; margin-top:10px;">
+    <table style="min-width: 1200px; margin-top:10px;">
       <thead>
         <tr>
           <th>รหัส</th>
           <th>ชื่อ</th>
           <th>อายุ</th>
+          <th>ที่อยู่</th>
           <th>CG</th>
           <th>คะแนน ADL</th>
           <th>กลุ่ม ADL</th>
+          <th>การวินิจฉัย</th>
+          <th>โรคประจำตัว</th>
           <th>เยี่ยม/เดือน</th>
           <th>โหมด</th>
           <th>สถานะ</th>
@@ -665,14 +680,14 @@ header.app-header .app-header-user .btn:hover { background: rgba(255, 255, 255, 
       <div class="field"><label>ปี พ.ศ.</label><select id="pdfYear"></select></div>
       <div class="field"><label>กรอง CG (ถ้าต้องการ)</label><select id="pdfCgFilter"><option value="">ทุก CG</option></select></div>
     </div>
-    <p class="muted" style="margin-top:8px;">1 หน้ากระดาษ A4 จะรวมการเยี่ยมของผู้สูงอายุคนเดียวกันสูงสุด 4 ครั้ง พร้อมสรุปรายงาน และช่องลงชื่อรับรองท้ายหน้า</p>
+    <p class="muted" style="margin-top:8px;">1 หน้ากระดาษ A4 จะรวมการเยี่ยมของผู้สูงอายุคนเดียวกันสูงสุด 4 ครั้ง พร้อมบ้านเลขที่ หมู่ การวินิจฉัย โรคประจำตัว ผลประเมิน ADL และช่องลงชื่อรับรองท้ายหน้า</p>
     <button class="btn btn-primary" id="generatePdfBtn" style="margin-top:12px;">📄 ออกรายงาน</button>
     <div class="upload-progress" id="pdfProgress"></div>
   </div>
 
   <div class="card">
     <h3>รายงานข้อมูลผู้สูงอายุ (สถานะทั้งหมด)</h3>
-    <p class="muted" style="line-height:1.4;">รายงานรายชื่อผู้สูงอายุพร้อมข้อมูล ADL, CG ผู้ดูแล, ความคืบหน้าการเยี่ยมเทียบเป้าหมายรายเดือน, และสถานะการดูแล (ดูแลอยู่ / จำหน่ายแล้ว) ออกได้ทั้งไฟล์ Excel และ PDF</p>
+    <p class="muted" style="line-height:1.4;">รายงานรายชื่อผู้สูงอายุพร้อมข้อมูล ADL, การวินิจฉัย, โรคประจำตัว, CG ผู้ดูแล, ความคืบหน้าการเยี่ยมเทียบเป้าหมายรายเดือน, และสถานะการดูแล (ดูแลอยู่ / จำหน่ายแล้ว) ออกได้ทั้งไฟล์ Excel และ PDF</p>
     <div class="row" style="margin-top:12px;">
       <div class="field"><label>เดือนที่ใช้คำนวณความคืบหน้าการเยี่ยม</label><select id="elderlyReportMonth"></select></div>
       <div class="field"><label>ปี พ.ศ.</label><select id="elderlyReportYear"></select></div>
@@ -697,6 +712,39 @@ header.app-header .app-header-user .btn:hover { background: rgba(255, 255, 255, 
       <button class="btn btn-primary" id="exportElderlyPdfBtn">📄 ออกรายงาน PDF</button>
     </div>
     <div class="upload-progress" id="elderlyReportProgress"></div>
+  </div>
+</section>
+
+<!-- ===================== SUMMARY (ADL TREND) ===================== -->
+<section id="tab-summary" class="tabpanel">
+  <div class="card">
+    <h3>📈 สรุปผลการประเมิน ADL รายคน (ปีงบประมาณ ต.ค. – ก.ย.)</h3>
+    <p class="muted">แสดงแนวโน้มคะแนน ADL ของผู้สูงอายุ/ผู้มีภาวะพึ่งพิงรายบุคคล เริ่มตั้งแต่ปีงบประมาณ พ.ศ. 2570 เป็นต้นไป</p>
+    <div class="row" style="margin-top:12px;">
+      <div class="field"><label>ปีงบประมาณ (พ.ศ.)</label><select id="sumFiscalYear"></select></div>
+      <div class="field"><label>เดือนเริ่มต้น</label><select id="sumStartMonth"></select></div>
+      <div class="field"><label>เดือนสิ้นสุด</label><select id="sumEndMonth"></select></div>
+    </div>
+    <div class="row" style="margin-top:10px;">
+      <div class="field"><label>กรองตาม CG</label><select id="sumCg"><option value="">ทุก CG</option></select></div>
+      <div class="field"><label>เลือกผู้สูงอายุ</label><select id="sumElderly"></select></div>
+      <button class="btn btn-primary" id="sumRefreshBtn" style="align-self:flex-end;">🔄 แสดงผล</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>กราฟเส้นคะแนน ADL รายเดือน</h3>
+    <div style="position:relative;height:400px;"><canvas id="sumChart"></canvas></div>
+  </div>
+
+  <div class="card">
+    <h3>สรุปภาพรวม</h3>
+    <div class="stat-grid" id="sumStats"></div>
+  </div>
+
+  <div class="card" style="overflow-x:auto;">
+    <h3>ตารางคะแนน ADL รายเดือน</h3>
+    <table id="sumTable" style="min-width:820px;"></table>
   </div>
 </section>
 
@@ -821,6 +869,14 @@ header.app-header .app-header-user .btn:hover { background: rgba(255, 255, 255, 
     <div class="field"><label>โหมด PDF</label><select id="elderlyPdfMode"><option value="normal">ปกติ (normal)</option><option value="obt">อบต. (obt)</option></select></div>
   </div>
   <div class="field" style="margin-top:8px;"><label>จำนวนครั้งที่เยี่ยมต่อเดือน</label><input type="number" id="elderlyVisitsPerMonth" min="1" max="10" value="5"></div>
+  <div class="field" style="margin-top:8px;">
+    <label>การวินิจฉัยโรค (Diagnosis)</label>
+    <textarea id="elderlyDiagnosis" placeholder="เช่น Cerebral infarction with left hemiparesis"></textarea>
+  </div>
+  <div class="field" style="margin-top:8px;">
+    <label>โรคประจำตัว (Underlying disease)</label>
+    <textarea id="elderlyChronic" placeholder="เช่น เบาหวาน, ความดันโลหิตสูง, ไตวายเรื้อรัง"></textarea>
+  </div>
   <div class="field" style="margin-top:8px;"><label>เบอร์โทรศัพท์ญาติ</label><input type="tel" id="elderlyRelativePhone" placeholder="เช่น 08xxxxxxxx"></div>
   <div class="row" style="margin-top:8px;">
     <div class="field"><label>ชื่อ อสม. ใกล้บ้าน</label><input type="text" id="elderlyVhvName"></div>
@@ -930,6 +986,7 @@ header.app-header .app-header-user .btn:hover { background: rgba(255, 255, 255, 
   <input type="hidden" id="euUserId">
   <p class="muted" id="euUsernameLabel"></p>
   <div class="field" style="margin-top:8px;"><label>ชื่อ-สกุล</label><input type="text" id="euDisplayName"></div>
+  <div class="field" style="margin-top:8px;"><label>ตำแหน่ง (ใช้แสดงในช่องลงชื่อรับรองรายงาน)</label><input type="text" id="euPosition" placeholder="เช่น นักวิชาการสาธารณสุขปฏิบัติการ"></div>
   <div class="field" style="margin-top:8px;"><label>ที่อยู่</label><input type="text" id="euAddress"></div>
   <div class="field" style="margin-top:8px;"><label>เบอร์โทรศัพท์</label><input type="tel" id="euPhone"></div>
   <div class="field" style="margin-top:8px;">
@@ -961,13 +1018,13 @@ header.app-header .app-header-user .btn:hover { background: rgba(255, 255, 255, 
 <script>
 // --- CRITICAL CONFIG & CONSTANTS ---
 const FIREBASE_CONFIG = {
-  apiKey: "AIzaSyDwmk2wi_aeV0K1bO1PAkGYSOjA7gQOKBE",
+  apiKey: "*************_*************************",
   authDomain: "ltc-nongpan.firebaseapp.com",
   databaseURL: "https://ltc-nongpan-default-rtdb.asia-southeast1.firebasedatabase.app",
   projectId: "ltc-nongpan",
   storageBucket: "ltc-nongpan.firebasestorage.app",
-  messagingSenderId: "1024118162465",
-  appId: "1:1024118162465:web:4f0bbd1e005f6542924f6"
+  messagingSenderId: "*************",
+  appId: "1:*************:web:4f0bbd1e005f6542924f6"
 };
 const IMGBB_API_KEY = "8eb385d52c3d5019be8763d5074e9026";
 const FACILITY_NAME = "รพ.สต.บ้านดงสง่า";
@@ -976,7 +1033,6 @@ const LOGO_BASE64 = "https://i.ibb.co/r2dzhNJ2/Gemini-Generated-Image-m1uvi8m1uv
 firebase.initializeApp(FIREBASE_CONFIG);
 const db = firebase.database();
 
-// --- PREVENT TIMING/INITIALIZATION BUGS: DECLARE DOM ELEMENTS UPFRONT ---
 const recMonthSel = document.getElementById('recMonth');
 const recYearSel = document.getElementById('recYear');
 const dashMonthSel = document.getElementById('dashMonth');
@@ -997,6 +1053,55 @@ const FEEDING_LABELS = {'1':'รับประทานเอง','2':'CG ป�
 const FOODTYPE_LABELS = {'1':'อาหารธรรมดา','2':'อาหารอ่อน','3':'อาหารแข็ง'};
 const CARE_ACTIVITY_LABELS = {'1':'ปฏิบัติตาม care plan','2':'ดูแลความสะอาดร่างกายคนไข้','3':'ดูแลสภาพแวดล้อมทั่วไป','4':'ช่วยเหลือญาติทำกิจกรรม','5':'ให้กำลังใจญาติและผู้ป่วย'};
 const ADL_EMOJI = {'1':'🟢','2':'🟡','3':'🟠','4':'🔴'};
+
+// ===== ADL (Barthel Index) =====
+const ADL_ITEMS = [
+  {key:'feeding', short:'กินอาหาร', label:'1. การกินอาหาร (Feeding)', max:2,
+   options:[{v:0,t:'ตักเองไม่ได้'},{v:1,t:'ต้องมีคนช่วยตัด/เตรียม'},{v:2,t:'ทำได้เอง'}]},
+  {key:'grooming', short:'ล้างหน้า/แปรงฟัน', label:'2. การล้างหน้า หวีผม แปรงฟัน (Grooming)', max:1,
+   options:[{v:0,t:'ต้องมีคนช่วย'},{v:1,t:'ทำได้เอง'}]},
+  {key:'transfer', short:'ลุกนั่ง', label:'3. การลุกนั่งจากเตียง/เก้าอี้ (Transfer)', max:3,
+   options:[{v:0,t:'ทำไม่ได้'},{v:1,t:'ต้องการความช่วยเหลือมาก'},{v:2,t:'ต้องการความช่วยเหลือเล็กน้อย'},{v:3,t:'ทำได้เอง'}]},
+  {key:'toilet', short:'ใช้ห้องน้ำ', label:'4. การใช้ห้องน้ำ (Toilet use)', max:2,
+   options:[{v:0,t:'ช่วยเหลือตัวเองไม่ได้'},{v:1,t:'ทำเองได้บ้างแต่ต้องการคนช่วย'},{v:2,t:'ช่วยเหลือตัวเองได้ดี'}]},
+  {key:'mobility', short:'การเคลื่อนไหว', label:'5. การเคลื่อนไหวเดินในห้อง/บ้าน (Mobility)', max:3,
+   options:[{v:0,t:'เดินไม่ได้/นั่งรถเข็นเองไม่ได้'},{v:1,t:'ใช้รถเข็นเคลื่อนที่ได้เอง'},{v:2,t:'เดินโดยมีคนช่วยพยุง'},{v:3,t:'เดินได้เอง'}]},
+  {key:'dressing', short:'ใส่เสื้อผ้า', label:'6. การใส่เสื้อผ้า (Dressing)', max:2,
+   options:[{v:0,t:'ต้องมีคนช่วย'},{v:1,t:'ช่วยตัวเองได้ประมาณ 50%'},{v:2,t:'ใส่เองได้เรียบร้อย'}]},
+  {key:'stairs', short:'ขึ้นลงบันได', label:'7. การขึ้นลงบันได 1 ชั้น (Stairs)', max:2,
+   options:[{v:0,t:'ขึ้นลงไม่ได้'},{v:1,t:'ต้องการคนช่วย'},{v:2,t:'ขึ้นลงได้เอง'}]},
+  {key:'bathing', short:'อาบน้ำ', label:'8. การอาบน้ำ (Bathing)', max:1,
+   options:[{v:0,t:'ต้องมีคนช่วยหรือทำให้'},{v:1,t:'อาบน้ำเองได้'}]},
+  {key:'bowels', short:'กลั้นอุจจาระ', label:'9. การกลั้นการถ่ายอุจจาระ (Bowels)', max:2,
+   options:[{v:0,t:'กลั้นไม่ได้/สวนอุจจาระเสมอ'},{v:1,t:'กลั้นไม่ได้ 1 ครั้ง/สัปดาห์'},{v:2,t:'กลั้นได้ปกติ'}]},
+  {key:'bladder', short:'กลั้นปัสสาวะ', label:'10. การกลั้นปัสสาวะ (Bladder)', max:2,
+   options:[{v:0,t:'กลั้นไม่ได้/ใส่สายสวน'},{v:1,t:'เล็ดราด น้อยกว่า 1 ครั้ง/วัน'},{v:2,t:'กลั้นได้ปกติ'}]}
+];
+
+const DEFAULT_APPROVER = { name:'นางสาววรรณนิศา บุญสิงห์', position:'นักวิชาการสาธารณสุขปฏิบัติการ' };
+function getApproverInfo(){
+  if(CURRENT_USER && CURRENT_USER.role === 'care_manager'){
+    return { name: CURRENT_USER.displayName || DEFAULT_APPROVER.name,
+             position: CURRENT_USER.position || DEFAULT_APPROVER.position };
+  }
+  const cm = Object.values(STATE.users||{}).find(u=>u.role === 'care_manager');
+  if(cm) return { name: cm.displayName || DEFAULT_APPROVER.name,
+                  position: cm.position || DEFAULT_APPROVER.position };
+  return DEFAULT_APPROVER;
+}
+
+function adlLevelLabel(score){
+  if(score===''||score===null||score===undefined||isNaN(score)) return '-';
+  const s = Number(score);
+  if(s <= 4)  return 'ติดเตียง (0–4 คะแนน)';
+  if(s <= 11) return 'ติดบ้าน (5–11 คะแนน)';
+  return 'ติดสังคม (12–20 คะแนน)';
+}
+function adlAnswersText(ans){
+  if(!ans) return '-';
+  return ADL_ITEMS.map(it=> (ans[it.key]===null||ans[it.key]===undefined) ? null : `${it.short} ${ans[it.key]}/${it.max}`)
+                  .filter(Boolean).join(' · ') || '-';
+}
 
 function beYear(y){ return y + 543; }
 function pad2(n){ return String(n).padStart(2,'0'); }
@@ -1034,7 +1139,14 @@ function showConfirm(title, message, onOk){
 
 function nextCode(existingObj, prefix, digits){
   const nums = Object.keys(existingObj||{}).map(k=>{
-    const m = k.match(new RegExp('^'+prefix+'(\\d+)$'));
+    const m = k.match(new RegExp('^'+prefix+'(\\d+)
+
+**หมายเหตุการใช้งานสำคัญ:**
+- ช่องลงชื่อผู้รับรองจะดึงชื่อ+ตำแหน่งจากผู้ใช้บทบาท **CM** อัตโนมัติ — แนะนำให้ Admin ไปที่แท็บ "ผู้ใช้งาน" แล้วกรอกช่อง **ตำแหน่ง** ให้ CM ก่อน (ถ้าไม่มี CM ในระบบจะใช้ค่าเริ่มต้น "นางสาววรรณนิศา บุญสิงห์ / นักวิชาการสาธารณสุขปฏิบัติการ")
+- คะแนน ADL ในหน้าบันทึกเยี่ยมคำนวณอัตโนมัติ และเมื่อบันทึกจะอัปเดตคะแนนล่าสุดกลับเข้าทะเบียนผู้สูงอายุด้วย
+- กราฟจะเริ่มมีข้อมูลเมื่อมีการบันทึกเยี่ยมพร้อมประเมิน ADL แล้ว (ข้อมูลเก่าที่ไม่มี ADL จะไม่ขึ้นเส้น)
+
+ต้องการให้ผมเพิ่มปุ่ม **Export กราฟ/ตารางสรุปผลเป็น PDF** ในแท็บสรุปผลการดำเนินงานด้วยไหมครับ?));
     return m ? parseInt(m[1],10) : 0;
   });
   const next = (nums.length ? Math.max(...nums) : 0) + 1;
@@ -1143,7 +1255,7 @@ db.ref('users').on('value', snap=>{
   STATE.users = snap.val() || {};
   if(Object.keys(STATE.users).length === 0){
     db.ref('users').set({
-      U_ADMIN_SEED: { username:'1470400001653', password:'05579', displayName:'นายศราวุธ ฟองอ่อน (รักษาการผู้อำนวยการโรงพยาบาลส่งเสริมสุขภาพตำบลบ้านดงสง่า)', idCard:'1470400001653', address:'', phone:'', role:'admin', cgCode:'', permissions: permsFromRoleTabs('admin'), createdAt: Date.now() }
+      U_ADMIN_SEED: { username:'*************', password:'*****', displayName:'นายศราวุธ ฟองอ่อน (รักษาการผู้อำนวยการโรงพยาบาลส่งเสริมสุขภาพตำบลบ้านดงสง่า)', idCard:'*************', address:'', phone:'', position:'', role:'admin', cgCode:'', permissions: permsFromRoleTabs('admin'), createdAt: Date.now() }
     });
   }
   renderUsersTable();
@@ -1158,6 +1270,7 @@ function onDataChange(){
   renderDrill();
   renderEquipmentElderlySelect();
   renderEquipmentTable();
+  if(typeof renderSummaryElderlyOptions === 'function') renderSummaryElderlyOptions();
   if(!dataLoadedOnce){
     dataLoadedOnce = true;
     maybeSeedData();
@@ -1165,13 +1278,8 @@ function onDataChange(){
   }
 }
 
-// --- REMOVED ALL SAMPLE ELDERLY & CG SEEDS ---
-function maybeSeedData(){
-  // Kept clean as requested. No auto-generated CG names.
-}
-function maybeSeedElderlyImport(){
-  // Kept clean as requested. No auto-generated Elderly names.
-}
+function maybeSeedData(){}
+function maybeSeedElderlyImport(){}
 
 document.querySelectorAll('nav.tabs button').forEach(btn=>{
   btn.addEventListener('click', ()=>{
@@ -1183,9 +1291,9 @@ document.querySelectorAll('nav.tabs button').forEach(btn=>{
 });
 
 const ROLE_TABS = {
-  admin:        ['dashboard','record','cg','elderly','equipment','pdf','history','users'],
-  care_manager: ['dashboard','record','cg','elderly','equipment','pdf','history'],
-  cg:           ['dashboard','record','equipment'],
+  admin:        ['dashboard','record','cg','elderly','equipment','pdf','summary','history','users'],
+  care_manager: ['dashboard','record','cg','elderly','equipment','pdf','summary','history'],
+  cg:           ['dashboard','record','equipment','summary'],
   unassigned:   ['dashboard'],
   public:       ['dashboard']
 };
@@ -1203,6 +1311,7 @@ const TAB_DEFS = [
   {key:'elderly',   label:'👴 จัดการผู้มีภาวะพึ่งพิง'},
   {key:'equipment', label:'🛠 การจัดการอุปกรณ์'},
   {key:'pdf',       label:'📄 ออกรายงาน'},
+  {key:'summary',   label:'📈 สรุปผลการดำเนินงาน'},
   {key:'history',   label:'📜 ประวัติผู้มีภาวะพึ่งพิง'},
   {key:'users',     label:'🔐 ผู้ใช้งาน'}
 ];
@@ -1455,6 +1564,7 @@ function openEditUser(uid){
   document.getElementById('euUserId').value = uid;
   document.getElementById('euUsernameLabel').textContent = `Username (เลขบัตรประชาชน): ${u.username}`;
   document.getElementById('euDisplayName').value = u.displayName||'';
+  document.getElementById('euPosition').value = u.position||'';
   document.getElementById('euAddress').value = u.address||'';
   document.getElementById('euPhone').value = u.phone||'';
   document.getElementById('euRole').value = u.role || 'unassigned';
@@ -1478,6 +1588,7 @@ function toggleEuCgFieldWrap(){
 document.getElementById('euSaveBtn').addEventListener('click', ()=>{
   const uid = document.getElementById('euUserId').value;
   const displayName = document.getElementById('euDisplayName').value.trim();
+  const position = document.getElementById('euPosition').value.trim();
   const address = document.getElementById('euAddress').value.trim();
   const phone = document.getElementById('euPhone').value.trim();
   const role = document.getElementById('euRole').value;
@@ -1487,7 +1598,7 @@ document.getElementById('euSaveBtn').addEventListener('click', ()=>{
   const u = STATE.users[uid];
   const roleChanged = u && u.role !== role;
   const updates = {
-    displayName, address, phone, role, cgCode: role==='cg' ? cgCode : ''
+    displayName, position, address, phone, role, cgCode: role==='cg' ? cgCode : ''
   };
   if(roleChanged){ updates.permissions = permsFromRoleTabs(role); }
   db.ref('users/'+uid).update(updates).then(()=>{
@@ -1584,10 +1695,10 @@ document.getElementById('cpSaveBtn').addEventListener('click', ()=>{
 
 function renderCgSelects(){
   const opts = Object.keys(STATE.cgs).sort().map(code=>`<option value="${code}">${code} - ${STATE.cgs[code].name}</option>`).join('');
-  ['recCg','elderlyCg','pdfCgFilter','filterElderlyCg','elderlyReportCgFilter'].forEach(id=>{
+  ['recCg','elderlyCg','pdfCgFilter','filterElderlyCg','elderlyReportCgFilter','sumCg'].forEach(id=>{
     const el = document.getElementById(id);
     if (!el) return;
-    const keepFirst = (id=='pdfCgFilter' || id=='elderlyReportCgFilter') ? '<option value="">ทุก CG</option>' : (id=='filterElderlyCg' ? '<option value="">ทั้งหมด</option>' : '');
+    const keepFirst = (id=='pdfCgFilter' || id=='elderlyReportCgFilter' || id=='sumCg') ? '<option value="">ทุก CG</option>' : (id=='filterElderlyCg' ? '<option value="">ทั้งหมด</option>' : '');
     const prevVal = el.value;
     el.innerHTML = keepFirst + opts;
     if(prevVal) el.value = prevVal;
@@ -1614,12 +1725,53 @@ function renderRecInfoCard(){
   if(!id || !STATE.elderly[id]){ if(box) box.innerHTML=''; renderRecQuotaBadge(); return; }
   const e = STATE.elderly[id];
   if (box) {
-    box.innerHTML = `<span class="adl-dot adl-${e.adlGroup||''}"></span>อายุ <b>${e.age||'-'}</b> ปี | ADL กลุ่ม <b>${e.adlGroup||'-'}</b> | เยี่ยม <b>${e.visitsPerMonth||'-'}</b> ครั้ง/เดือน | โหมด PDF: <span class="badge ${e.pdfMode}">${e.pdfMode==='obt'?'อบต.':'ปกติ'}</span>`;
+    box.innerHTML = `<span class="adl-dot adl-${e.adlGroup||''}"></span>อายุ <b>${e.age||'-'}</b> ปี | บ้านเลขที่ <b>${e.houseNo||'-'}</b> ${villageLabel(e.moo)} | ADL กลุ่ม <b>${e.adlGroup||'-'}</b> | เยี่ยม <b>${e.visitsPerMonth||'-'}</b> ครั้ง/เดือน | โหมด PDF: <span class="badge ${e.pdfMode}">${e.pdfMode==='obt'?'อบต.':'ปกติ'}</span>
+    <br><b>การวินิจฉัย:</b> ${e.diagnosis||'-'} | <b>โรคประจำตัว:</b> ${e.chronicDisease||'-'}`;
   }
   renderRecQuotaBadge();
 }
 document.getElementById('recCg').addEventListener('change', renderRecElderlyOptions);
 document.getElementById('recElderly').addEventListener('change', renderRecInfoCard);
+
+// ===== ADL FORM =====
+function renderAdlForm(){
+  const wrap = document.getElementById('recAdlForm');
+  if(!wrap) return;
+  wrap.innerHTML = ADL_ITEMS.map(it=>`
+    <div class="adl-block">
+      <div class="adl-title">${it.label}</div>
+      <div class="adl-opts">
+        ${it.options.map(o=>`
+          <label class="checkbox-item" style="gap:8px;">
+            <input type="radio" name="adl_${it.key}" class="adlRadio" value="${o.v}"> <b>${o.v}</b> = ${o.t}
+          </label>`).join('')}
+      </div>
+    </div>`).join('');
+  wrap.querySelectorAll('.adlRadio').forEach(r=>r.addEventListener('change', updateAdlScore));
+  updateAdlScore();
+}
+function getAdlAnswers(){
+  const ans = {};
+  ADL_ITEMS.forEach(it=>{
+    const sel = document.querySelector(`input[name="adl_${it.key}"]:checked`);
+    ans[it.key] = sel ? parseInt(sel.value,10) : null;
+  });
+  return ans;
+}
+function updateAdlScore(){
+  const ans = getAdlAnswers();
+  const answered = ADL_ITEMS.filter(it=>ans[it.key]!==null).length;
+  const total = ADL_ITEMS.reduce((s,it)=> s + (ans[it.key]||0), 0);
+  document.getElementById('recAdlScore').value = answered ? total : '';
+  const box = document.getElementById('recAdlSummary');
+  box.className = 'quota-badge ' + (answered===ADL_ITEMS.length ? 'quota-green' : 'quota-yellow');
+  box.innerHTML = `ประเมินแล้ว <b>${answered}/${ADL_ITEMS.length}</b> ข้อ | คะแนนรวม <b>${answered?total:'-'}</b>/20 | ระดับ: <b>${answered===ADL_ITEMS.length?adlLevelLabel(total):'-'}</b>`;
+}
+function clearAdlForm(){
+  document.querySelectorAll('.adlRadio').forEach(r=>r.checked=false);
+  updateAdlScore();
+}
+renderAdlForm();
 
 function renderRecQuotaBadge(){
   const badge = document.getElementById('recQuotaBadge');
@@ -1665,7 +1817,7 @@ function renderDashboard(){
   const monthVisits = visitsInMonth(m,y);
   const elderlyIds = Object.keys(STATE.elderly).filter(id=>STATE.elderly[id].status!=='discharged');
   const visitedElderlyIds = new Set(monthVisits.map(([id,v])=>v.elderlyId));
-  
+
   const statMonthEl = document.getElementById('statMonth');
   if (statMonthEl) {
     statMonthEl.innerHTML = `
@@ -1676,7 +1828,7 @@ function renderDashboard(){
       <div class="stat"><b>${monthVisits.length}</b><span>จำนวนครั้ง</span></div>
     `;
   }
-  
+
   const totalVisits = Object.keys(STATE.visits||{}).length;
   const normalCount = elderlyIds.filter(id=>STATE.elderly[id].pdfMode!=='obt').length;
   const obtCount = elderlyIds.filter(id=>STATE.elderly[id].pdfMode==='obt').length;
@@ -1688,7 +1840,7 @@ function renderDashboard(){
       <div class="stat"><b>${obtCount}</b><span>โหมด อบต.</span></div>
     `;
   }
-  
+
   const rows = Object.keys(STATE.cgs).sort().map(code=>{
     const cg = STATE.cgs[code];
     const elderlyOfCg = elderlyIds.filter(id=>STATE.elderly[id].cgCode===code);
@@ -1790,7 +1942,7 @@ function renderDrill(){
         </div>
       </div>`;
     }).join('');
-    content.innerHTML = `<div class="photo-grid">${cards}</div>` || '<p class="muted">ยังไม่มีรูป</p>';
+    content.innerHTML = `<div class="photo-grid">${cards}</div>`;
     if(entries.length===0) content.innerHTML = '<p class="muted">ยังไม่มีรูปของผู้สูงอายุคนนี้</p>';
   }
 }
@@ -1879,14 +2031,12 @@ document.getElementById('recSaveBtn').addEventListener('click', async ()=>{
   if(files.length !== STATE.selectedDates.length){
     toast(`จำนวนรูป (${files.length}) ต้องเท่ากับจำนวนวันที่เลือก (${STATE.selectedDates.length})`,'error'); return;
   }
-  const adlScoreRaw = document.getElementById('recAdlScore').value;
-  let adlScore = null;
-  if(adlScoreRaw !== ''){
-    adlScore = parseInt(adlScoreRaw,10);
-    if(isNaN(adlScore) || adlScore<0 || adlScore>20){
-      toast('คะแนน ADL ต้องอยู่ระหว่าง 0-20 คะแนนเท่านั้น','error'); return;
-    }
-  }
+
+  const adlAnswers = getAdlAnswers();
+  const unanswered = ADL_ITEMS.filter(it=>adlAnswers[it.key]===null);
+  if(unanswered.length){ toast('กรุณาประเมิน ADL ให้ครบทั้ง 10 ข้อ (ขาด: '+unanswered[0].short+')','error'); return; }
+  const adlScore = ADL_ITEMS.reduce((s,it)=> s + adlAnswers[it.key], 0);
+
   const careActivities = Array.from(document.querySelectorAll('.recCareActivity:checked')).map(cb=>cb.value);
   const assessment = {
     vitals: {
@@ -1902,7 +2052,9 @@ document.getElementById('recSaveBtn').addEventListener('click', async ()=>{
     feedingMethod: document.getElementById('recFeedingMethod').value || '',
     foodType: document.getElementById('recFoodType').value || '',
     careActivities,
-    adlScore: adlScore===null ? '' : adlScore
+    adlScore: adlScore,
+    adlAnswers: adlAnswers,
+    adlLevel: adlLevelLabel(adlScore)
   };
   const elderly = STATE.elderly[elderlyId];
   const cg = STATE.cgs[cgCode];
@@ -1926,6 +2078,7 @@ document.getElementById('recSaveBtn').addEventListener('click', async ()=>{
         assessment
       });
     }
+    await db.ref('elderly/'+elderlyId).update({ adlScore: adlScore });
     progressEl.textContent = '';
     toast('บันทึกการเยี่ยมสำเร็จ','success');
     document.getElementById('recPhotos').value='';
@@ -1941,7 +2094,7 @@ document.getElementById('recSaveBtn').addEventListener('click', async ()=>{
     document.getElementById('recElimination').value='';
     document.getElementById('recFeedingMethod').value='';
     document.getElementById('recFoodType').value='';
-    document.getElementById('recAdlScore').value='';
+    clearAdlForm();
     document.querySelectorAll('.recCareActivity:checked').forEach(cb=>cb.checked=false);
     STATE.selectedDates = [];
     renderSelectedChips();
@@ -2077,9 +2230,16 @@ function renderElderlyTable(){
       ? `<span class="status-tag discharged" title="${e.dischargeReasonLabel||''} (${e.dischargeDate||''})">จำหน่ายแล้ว</span>`
       : `<span class="status-tag approved">ดูแลอยู่</span>`;
     return `<tr>
-      <td><b>${id}</b></td><td><span class="adl-dot adl-${e.adlGroup||''}"></span><b>${e.name}</b></td><td>${e.age||'-'}</td><td>${cgName}</td>
-      <td>${(e.adlScore!==undefined && e.adlScore!==null && e.adlScore!=='') ? e.adlScore : '-'}</td>
-      <td>${e.adlGroup||'-'}</td><td>${e.visitsPerMonth||'-'}</td>
+      <td><b>${id}</b></td>
+      <td><span class="adl-dot adl-${e.adlGroup||''}"></span><b>${e.name}</b></td>
+      <td>${e.age||'-'}</td>
+      <td style="font-size:14px;">บ้านเลขที่ ${e.houseNo||'-'}<br><span class="muted">${villageLabel(e.moo)}</span></td>
+      <td>${cgName}</td>
+      <td>${(e.adlScore!==undefined && e.adlScore!==null && e.adlScore!=='') ? `${e.adlScore}<br><span class="muted" style="font-size:12.5px;">${adlLevelLabel(e.adlScore)}</span>` : '-'}</td>
+      <td>${e.adlGroup||'-'}</td>
+      <td style="font-size:14px;max-width:180px;">${e.diagnosis||'-'}</td>
+      <td style="font-size:14px;max-width:180px;">${e.chronicDisease||'-'}</td>
+      <td>${e.visitsPerMonth||'-'}</td>
       <td><span class="badge ${e.pdfMode}">${e.pdfMode==='obt'?'อบต.':'ปกติ'}</span></td>
       <td>${statusCell}</td>
       <td class="row" style="gap:4px;"><button class="btn btn-ghost btn-sm" onclick="openEditElderly('${id}')">✏️</button>
@@ -2087,12 +2247,12 @@ function renderElderlyTable(){
       <button class="btn btn-danger btn-sm" onclick="deleteElderly('${id}')">🗑</button></td>
     </tr>`;
   }).join('');
-  document.getElementById('elderlyTable').innerHTML = rows || '<tr><td colspan="10" class="muted">ยังไม่มีข้อมูล</td></tr>';
+  document.getElementById('elderlyTable').innerHTML = rows || '<tr><td colspan="13" class="muted">ยังไม่มีข้อมูล</td></tr>';
 }
 document.getElementById('addElderlyBtn').addEventListener('click', ()=>{
   document.getElementById('elderlyModalTitle').textContent = 'เพิ่มผู้สูงอายุ';
   document.getElementById('elderlyEditId').value = '';
-  ['elderlyName','elderlyIdCard','elderlyHn','elderlyAge','elderlyHouseNo','elderlyRelativePhone','elderlyVhvName','elderlyVhvPhone','elderlyAdlScore'].forEach(id=>document.getElementById(id).value='');
+  ['elderlyName','elderlyIdCard','elderlyHn','elderlyAge','elderlyHouseNo','elderlyRelativePhone','elderlyVhvName','elderlyVhvPhone','elderlyAdlScore','elderlyDiagnosis','elderlyChronic'].forEach(id=>document.getElementById(id).value='');
   document.getElementById('elderlyGender').value = 'ชาย';
   document.getElementById('elderlyMoo').value = '';
   document.getElementById('elderlyAdl').value = '1';
@@ -2116,6 +2276,8 @@ function openEditElderly(id){
   document.getElementById('elderlyCg').value = e.cgCode||'';
   document.getElementById('elderlyVisitsPerMonth').value = e.visitsPerMonth||'5';
   document.getElementById('elderlyPdfMode').value = e.pdfMode||'normal';
+  document.getElementById('elderlyDiagnosis').value = e.diagnosis||'';
+  document.getElementById('elderlyChronic').value = e.chronicDisease||'';
   document.getElementById('elderlyRelativePhone').value = e.relativePhone||'';
   document.getElementById('elderlyVhvName').value = e.vhvName||'';
   document.getElementById('elderlyVhvPhone').value = e.vhvPhone||'';
@@ -2143,6 +2305,8 @@ document.getElementById('elderlySaveBtn').addEventListener('click', ()=>{
     cgCode,
     visitsPerMonth,
     pdfMode: document.getElementById('elderlyPdfMode').value,
+    diagnosis: document.getElementById('elderlyDiagnosis').value.trim(),
+    chronicDisease: document.getElementById('elderlyChronic').value.trim(),
     relativePhone: document.getElementById('elderlyRelativePhone').value.trim(),
     vhvName: document.getElementById('elderlyVhvName').value.trim(),
     vhvPhone: document.getElementById('elderlyVhvPhone').value.trim(),
@@ -2210,7 +2374,7 @@ document.getElementById('dischargeSubmitBtn').addEventListener('click', ()=>{
 
 let STATE_ELDERLY_HISTORY = {};
 let STATE_VISIT_HISTORY = {};
-db.ref('elderlyHistory').on('value', snap=>{ STATE_ELDERLY_HISTORY = snap.val()||{}; renderHistoryTable(); });
+db.ref('elderlyHistory').on('value', snap=>{ STATE_ELDERLY_HISTORY = snap.val()||{}; renderHistoryTable(); if(typeof renderSummaryElderlyOptions==='function') renderSummaryElderlyOptions(); });
 db.ref('visitHistory').on('value', snap=>{ STATE_VISIT_HISTORY = snap.val()||{}; });
 
 const filterHistoryReasonSel = document.getElementById('filterHistoryReason');
@@ -2347,6 +2511,8 @@ if(historyExcelBtn){
       'CG เดิม': STATE.cgs[e.cgCode]?.name || e.cgCode || '-',
       'คะแนน ADL': (e.adlScore!==undefined && e.adlScore!==null) ? e.adlScore : '',
       'กลุ่ม ADL': e.adlGroup||'',
+      'การวินิจฉัย': e.diagnosis||'',
+      'โรคประจำตัว': e.chronicDisease||'',
       'เหตุผลจำหน่าย': e.dischargeReasonLabel||'',
       'วันที่จำหน่าย': e.dischargeDate ? formatThaiDate(e.dischargeDate,true) : '',
       'หมายเหตุ': e.dischargeNote||'',
@@ -2382,18 +2548,24 @@ function buildVisitBlockHTML(v, elderly, cg){
   const adlText = (a.adlScore!==undefined && a.adlScore!=='') ? a.adlScore : '-';
   const careList = (a.careActivities||[]).map(c=>CARE_ACTIVITY_LABELS[c]).filter(Boolean);
   const careText = careList.length ? careList.join(', ') : '-';
+  const adlDetail = adlAnswersText(a.adlAnswers);
+  const adlLv = a.adlLevel || adlLevelLabel(a.adlScore);
 
   return `
   <div style="display:flex;gap:10px;border:1.5px solid #f3d4ef;border-radius:10px;padding:10px;margin-bottom:8px;background:#fdf6fd;">
-    <img src="${v.photoUrl}" crossorigin="anonymous" style="width:118px;height:140px;object-fit:cover;border-radius:8px;flex-shrink:0;border:1.5px solid #f3d4ef;">
-    <div style="flex:1;font-size:10.5px;line-height:1.5;color:#1B2E3B;">
-      <div style="font-weight:700;font-size:13.5px;color:#2d0e3a;">${elderly.name} <span style="font-weight:400;color:#5B7A8C;font-size:10.5px;">(วันที่ ${formatThaiDate(v.visitDate)})</span></div>
-      <div style="margin-top:2px;"><b>CG ผู้เยี่ยม:</b> ${cg?cg.name:'-'}</div>
-      <div>BP: <b>${bpText}</b> mmHg &nbsp;|&nbsp; PR: <b>${prText}</b> &nbsp;|&nbsp; RR: <b>${rrText}</b> &nbsp;|&nbsp; T: <b>${tText}</b>°C &nbsp;|&nbsp; ADL: <b>${adlText}</b> คะแนน</div>
+    <img src="${v.photoUrl}" crossorigin="anonymous" style="width:110px;height:140px;object-fit:cover;border-radius:8px;flex-shrink:0;border:1.5px solid #f3d4ef;">
+    <div style="flex:1;font-size:10.5px;line-height:1.45;color:#1B2E3B;">
+      <div style="font-weight:700;font-size:13px;color:#2d0e3a;">${elderly.name} <span style="font-weight:400;color:#5B7A8C;font-size:10.5px;">(วันที่ ${formatThaiDate(v.visitDate)})</span></div>
+      <div><b>CG ผู้เยี่ยม:</b> ${cg?cg.name:'-'}</div>
+      <div>BP: <b>${bpText}</b> mmHg &nbsp;|&nbsp; PR: <b>${prText}</b> &nbsp;|&nbsp; RR: <b>${rrText}</b> &nbsp;|&nbsp; T: <b>${tText}</b>°C</div>
       <div>ยา: ${medLabel} &nbsp;|&nbsp; กิจวัตร: ${dailyLabel} &nbsp;|&nbsp; ขับถ่าย: ${elimLabel}</div>
       <div>อาหาร: ${feedLabel} (${foodLabel})</div>
-      <div>กิจกรรมที่ทำ: <span style="color:#d946ef; font-weight:600;">${careText}</span></div>
-      ${v.note ? `<div style="margin-top:4px;background:#fff;padding:4px 6px;border-radius:4px;border-left:2.5px solid #d946ef;"><b>ปัญหาสำคัญ:</b> ${v.note}</div>` : ''}
+      <div>กิจกรรมที่ทำ: <span style="color:#d946ef;font-weight:600;">${careText}</span></div>
+      <div style="margin-top:3px;background:#fff;padding:4px 6px;border-radius:4px;border-left:2.5px solid #2a9d8f;">
+        <b>ผลประเมิน ADL:</b> ${adlText}/20 (${adlLv})<br>
+        <span style="font-size:9.5px;color:#555;">${adlDetail}</span>
+      </div>
+      ${v.note ? `<div style="margin-top:3px;background:#fff;padding:4px 6px;border-radius:4px;border-left:2.5px solid #d946ef;"><b>ปัญหาสำคัญ:</b> ${v.note}</div>` : ''}
     </div>
   </div>`;
 }
@@ -2403,29 +2575,36 @@ function buildPdfPageHTML(elderly, cg, visitsChunk, monthLabel, yearBE){
   const notedIssues = visitsChunk.filter(v=>v.note && v.note.trim()).map(v=>`${formatThaiDate(v.visitDate,true)}: ${v.note.trim()}`);
   const adlScores = visitsChunk.map(v=>v.assessment && v.assessment.adlScore).filter(s=>s!==undefined && s!=='');
   const adlSummary = adlScores.length ? `${adlScores.join(', ')} คะแนน` : '-';
+  const lastAdl = adlScores.length ? adlScores[adlScores.length-1] : '';
+  const approver = getApproverInfo();
 
   return `
   <div style="width:754px;height:1083px;font-family:'Sarabun',sans-serif;background:#fff;display:flex;flex-direction:column;border:4px solid #f3d4ef;box-sizing:border-box;">
     <div style="background:linear-gradient(120deg,#2d0e3a,#421456);padding:14px 24px;display:flex;align-items:center;gap:14px;color:#fff;border-bottom:3px solid #d946ef;">
       <img src="${LOGO_BASE64}" style="width:58px;height:58px;border-radius:50%;object-fit:cover;border:2px solid #fff;flex-shrink:0;">
       <div style="flex:1;text-align:center;">
-        <div style="font-size:18px;font-weight:700;letter-spacing:0.5px;">สรุปการเยี่ยมผู้สูงอายุที่มีภาวะพึ่งพิง</div>
+        <div style="font-size:18px;font-weight:700;letter-spacing:0.5px;">สรุปการเยี่ยมผู้สูงอายุและผู้ป่วยที่มีภาวะพึ่งพิง</div>
         <div style="font-size:12.5px;margin-top:2px;color:#d946ef;font-weight:700;">ประจำเดือน ${monthLabel} ${yearBE}</div>
         <div style="font-size:11px;margin-top:2px;opacity:.92;">${FACILITY_NAME} ต.หนองแปน อ.เจริญศิลป์ จ.สกลนคร</div>
       </div>
       <div style="width:58px;flex-shrink:0;"></div>
     </div>
 
-    <div style="text-align:center;font-size:16px;font-weight:700;color:#2d0e3a;padding:12px 0 4px;">${elderly.name}</div>
-    <div style="text-align:center;font-size:11.5px;color:#5B7A8C;padding-bottom:8px;">อายุ ${elderly.age||'-'} ปี &nbsp;|&nbsp; CG ผู้ดูแล: ${cg?cg.name:'-'} &nbsp;|&nbsp; จำนวน ${visitsChunk.length} ครั้งในหน้านี้</div>
+    <div style="text-align:center;font-size:16px;font-weight:700;color:#2d0e3a;padding:10px 0 2px;">${elderly.name}</div>
+    <div style="text-align:center;font-size:11.5px;color:#5B7A8C;padding-bottom:2px;">
+      อายุ ${elderly.age||'-'} ปี &nbsp;|&nbsp; บ้านเลขที่ ${elderly.houseNo||'-'} หมู่ที่ ${elderly.moo||'-'} (${villageLabel(elderly.moo)}) &nbsp;|&nbsp; CG ผู้ดูแล: ${cg?cg.name:'-'}
+    </div>
+    <div style="text-align:center;font-size:11px;color:#5B7A8C;padding:0 24px 8px;">
+      <b>การวินิจฉัย:</b> ${elderly.diagnosis||'-'} &nbsp;|&nbsp; <b>โรคประจำตัว:</b> ${elderly.chronicDisease||'-'} &nbsp;|&nbsp; จำนวน ${visitsChunk.length} ครั้งในหน้านี้
+    </div>
 
     <div style="padding:0 24px;flex:1;">
       ${blocks}
     </div>
 
-    <div style="margin:6px 24px 0;background:#fdf2fc;border-radius:10px;padding:12px 16px;border:1px solid #f3d4ef;">
+    <div style="margin:6px 24px 0;background:#fdf2fc;border-radius:10px;padding:10px 16px;border:1px solid #f3d4ef;">
       <div style="font-size:12.5px;font-weight:700;color:#2d0e3a;margin-bottom:4px;">📝 สรุปรายงาน</div>
-      <div style="font-size:11px;color:#1B2E3B;">คะแนน ADL แต่ละครั้ง: <b>${adlSummary}</b></div>
+      <div style="font-size:11px;color:#1B2E3B;">คะแนน ADL แต่ละครั้ง: <b>${adlSummary}</b>${lastAdl!=='' ? ` — ระดับล่าสุด: <b>${adlLevelLabel(lastAdl)}</b>` : ''}</div>
       <div style="font-size:11px;color:#1B2E3B;margin-top:2px;">ปัญหาสำคัญที่พบในช่วงนี้: ${notedIssues.length ? notedIssues.join(' | ') : 'ไม่พบปัญหาเด่นชัด'}</div>
     </div>
 
@@ -2438,13 +2617,13 @@ function buildPdfPageHTML(elderly, cg, visitsChunk, monthLabel, yearBE){
       </div>
       <div style="width:47%;">
         <div>ลงชื่อ ..................................................... </div>
-        <div style="margin-top:4px;">( นางศศิธร ภิญญะพงษ์ )</div>
-        <div style="font-weight:700;">ตำแหน่ง พยาบาลวิชาชีพชำนาญการ (ผู้รับรองผลงาน)</div>
+        <div style="margin-top:4px;">( ${approver.name} )</div>
+        <div style="font-weight:700;">ตำแหน่ง ${approver.position} (ผู้รับรองผลงาน)</div>
         <div style="margin-top:4px;">วันที่ ......... / ......... / .........</div>
       </div>
     </div>
 
-    <div style="text-align:center;font-size:10.5px;color:#777;border-top:1px solid #eee;padding:8px 0;margin-top:10px;">
+    <div style="text-align:center;font-size:10.5px;color:#777;border-top:1px solid #eee;padding:8px 0;margin-top:8px;">
       CG: ${cg ? cg.name : '-'} | ${FACILITY_NAME} ต.หนองแปน อ.เจริญศิลป์ จ.สกลนคร
     </div>
   </div>`;
@@ -2497,7 +2676,7 @@ document.getElementById('generatePdfBtn').addEventListener('click', async ()=>{
       if(i>0) pdf.addPage();
       pdf.addImage(imgData,'JPEG',0,0,210,297);
     }
-    pdf.save(`สรุปการเยี่ยม_${monthLabel}${yBE}.pdf`);
+    pdf.save(`สรุปการเยี่ยมผู้สูงอายุและผู้ป่วยที่มีภาวะพึ่งพิง_${monthLabel}${yBE}.pdf`);
     progressEl.textContent = '';
     toast('สร้าง PDF สำเร็จ','success');
   }catch(err){
@@ -2554,6 +2733,8 @@ function buildElderlyReportRows(){
       houseNo: e.houseNo||'', moo: e.moo||'', villageLabel: villageLabel(e.moo), cgName,
       adlScore: (e.adlScore!==undefined && e.adlScore!==null) ? e.adlScore : '',
       adlGroup: e.adlGroup||'',
+      adlLevel: adlLevelLabel(e.adlScore),
+      diagnosis: e.diagnosis||'', chronicDisease: e.chronicDisease||'',
       target, visitedCount: visitedCount===null ? '-' : visitedCount,
       quotaLabel: quotaMet===null ? '-' : (quotaMet ? 'ครบตามเกณฑ์' : 'ยังไม่ครบ'),
       pdfMode: e.pdfMode==='obt' ? 'อบต.' : 'ปกติ',
@@ -2570,6 +2751,8 @@ function buildElderlyReportRows(){
       houseNo: e.houseNo||'', moo: e.moo||'', villageLabel: villageLabel(e.moo), cgName,
       adlScore: (e.adlScore!==undefined && e.adlScore!==null) ? e.adlScore : '',
       adlGroup: e.adlGroup||'',
+      adlLevel: adlLevelLabel(e.adlScore),
+      diagnosis: e.diagnosis||'', chronicDisease: e.chronicDisease||'',
       target: e.visitsPerMonth||'', visitedCount: '-', quotaLabel: '-',
       pdfMode: e.pdfMode==='obt' ? 'อบต.' : 'ปกติ',
       statusLabel: `จำหน่ายแล้ว (${e.dischargeReasonLabel||'-'})`,
@@ -2585,9 +2768,11 @@ document.getElementById('exportElderlyExcelBtn').addEventListener('click', ()=>{
   if(rows.length===0){ toast('ไม่พบข้อมูลผู้สูงอายุสำหรับออกรายงาน','error'); return; }
   const sheetData = rows.map(r=>({
     'ลำดับ': r.no, 'รหัส': r.id, 'ชื่อ-สกุล': r.name, 'เลขประจำตัวประชาชน': r.idCard,
-    'อายุ': r.age, 'เพศ': r.gender, 'บ้านเลขที่': r.houseNo, 'หมู่บ้าน': r.villageLabel, 'CG ผู้ดูแล': r.cgName,
-    'คะแนน ADL': r.adlScore, 'กลุ่ม ADL': r.adlGroup,
-    [`เป้าหมายเยี่ยม/เดือน`]: r.target, [`เยี่ยมแล้วเดือน ${monthLabel} ${yBE}`]: r.visitedCount,
+    'อายุ': r.age, 'เพศ': r.gender, 'บ้านเลขที่': r.houseNo, 'หมู่ที่': r.moo, 'หมู่บ้าน': r.villageLabel,
+    'การวินิจฉัย': r.diagnosis, 'โรคประจำตัว': r.chronicDisease,
+    'CG ผู้ดูแล': r.cgName,
+    'คะแนน ADL': r.adlScore, 'ระดับ ADL': r.adlLevel, 'กลุ่ม ADL': r.adlGroup,
+    'เป้าหมายเยี่ยม/เดือน': r.target, [`เยี่ยมแล้วเดือน ${monthLabel} ${yBE}`]: r.visitedCount,
     'สถานะเกณฑ์การเยี่ยม': r.quotaLabel, 'โหมด PDF': r.pdfMode,
     'สถานะการดูแล': r.statusLabel, 'วันที่จำหน่าย/เหตุผล': r.statusDate,
     'เบอร์โทรญาติ': r.relativePhone, 'ชื่อ อสม.': r.vhvName, 'เบอร์โทร อสม.': r.vhvPhone
@@ -2603,39 +2788,45 @@ document.getElementById('exportElderlyExcelBtn').addEventListener('click', ()=>{
 function buildElderlyReportPdfPageHTML(rowsChunk, monthLabel, yBE, pageNo, totalPages){
   const rowsHtml = rowsChunk.map(r=>`
     <tr>
-      <td style="padding:5px 6px;border:1px solid #ddd;text-align:center;">${r.no}</td>
-      <td style="padding:5px 6px;border:1px solid #ddd;"><b>${r.name}</b></td>
-      <td style="padding:5px 6px;border:1px solid #ddd;text-align:center;">${r.age}</td>
-      <td style="padding:5px 6px;border:1px solid #ddd;">${r.cgName}</td>
-      <td style="padding:5px 6px;border:1px solid #ddd;text-align:center;">${r.adlScore}</td>
-      <td style="padding:5px 6px;border:1px solid #ddd;text-align:center;">${r.adlGroup}</td>
-      <td style="padding:5px 6px;border:1px solid #ddd;text-align:center;">${r.visitedCount}/${r.target}</td>
-      <td style="padding:5px 6px;border:1px solid #ddd;text-align:center;">${r.quotaLabel}</td>
-      <td style="padding:5px 6px;border:1px solid #ddd;">${r.statusLabel}</td>
+      <td style="padding:5px 5px;border:1px solid #ddd;text-align:center;">${r.no}</td>
+      <td style="padding:5px 5px;border:1px solid #ddd;"><b>${r.name}</b></td>
+      <td style="padding:5px 5px;border:1px solid #ddd;text-align:center;">${r.age}</td>
+      <td style="padding:5px 5px;border:1px solid #ddd;text-align:center;">${r.houseNo||'-'} / ม.${r.moo||'-'}</td>
+      <td style="padding:5px 5px;border:1px solid #ddd;font-size:9.5px;">${r.diagnosis||'-'}</td>
+      <td style="padding:5px 5px;border:1px solid #ddd;font-size:9.5px;">${r.chronicDisease||'-'}</td>
+      <td style="padding:5px 5px;border:1px solid #ddd;">${r.cgName}</td>
+      <td style="padding:5px 5px;border:1px solid #ddd;text-align:center;">${r.adlScore}</td>
+      <td style="padding:5px 5px;border:1px solid #ddd;font-size:9.5px;text-align:center;">${r.adlLevel}</td>
+      <td style="padding:5px 5px;border:1px solid #ddd;text-align:center;">${r.visitedCount}/${r.target}</td>
+      <td style="padding:5px 5px;border:1px solid #ddd;text-align:center;">${r.quotaLabel}</td>
+      <td style="padding:5px 5px;border:1px solid #ddd;font-size:9.5px;">${r.statusLabel}</td>
     </tr>`).join('');
   return `
   <div style="width:1050px;height:743px;font-family:'Sarabun',sans-serif;background:#fff;display:flex;flex-direction:column;border:3px solid #d946ef;box-sizing:border-box;">
-    <div style="background:linear-gradient(120deg,#2d0e3a,#421456);padding:14px 24px;display:flex;align-items:center;gap:14px;color:#fff;border-bottom:3px solid #d946ef;">
+    <div style="background:linear-gradient(120deg,#2d0e3a,#421456);padding:12px 24px;display:flex;align-items:center;gap:14px;color:#fff;border-bottom:3px solid #d946ef;">
       <img src="${LOGO_BASE64}" style="width:52px;height:52px;border-radius:50%;object-fit:cover;border:2px solid #fff;flex-shrink:0;">
       <div style="flex:1;text-align:center;">
-        <div style="font-size:17px;font-weight:700;">รายงานข้อมูลผู้สูงอายุ (สถานะทั้งหมด)</div>
+        <div style="font-size:17px;font-weight:700;">รายงานข้อมูลผู้สูงอายุและผู้ป่วยที่มีภาวะพึ่งพิง (สถานะทั้งหมด)</div>
         <div style="font-size:11px;margin-top:2px;opacity:.92;">${FACILITY_NAME} ต.หนองแปน อ.เจริญศิลป์ จ.สกลนคร — เยี่ยมประจำเดือน ${monthLabel} ${yBE}</div>
       </div>
       <div style="width:52px;flex-shrink:0;"></div>
     </div>
-    <div style="padding:14px 20px;flex:1;">
-      <table style="width:100%;border-collapse:collapse;font-size:11px;">
+    <div style="padding:12px 18px;flex:1;">
+      <table style="width:100%;border-collapse:collapse;font-size:10px;">
         <thead>
           <tr style="background:#fdf2fc;color:#2d0e3a;">
-            <th style="padding:5px 6px;border:1px solid #ddd;">ลำดับ</th>
-            <th style="padding:5px 6px;border:1px solid #ddd;">ชื่อ-สกุล</th>
-            <th style="padding:5px 6px;border:1px solid #ddd;">อายุ</th>
-            <th style="padding:5px 6px;border:1px solid #ddd;">CG ผู้ดูแล</th>
-            <th style="padding:5px 6px;border:1px solid #ddd;">คะแนน ADL</th>
-            <th style="padding:5px 6px;border:1px solid #ddd;">กลุ่ม ADL</th>
-            <th style="padding:5px 6px;border:1px solid #ddd;">เยี่ยมแล้ว/เป้าหมาย</th>
-            <th style="padding:5px 6px;border:1px solid #ddd;">สถานะเกณฑ์เยี่ยม</th>
-            <th style="padding:5px 6px;border:1px solid #ddd;">สถานะการดูแล</th>
+            <th style="padding:5px 5px;border:1px solid #ddd;">ลำดับ</th>
+            <th style="padding:5px 5px;border:1px solid #ddd;">ชื่อ-สกุล</th>
+            <th style="padding:5px 5px;border:1px solid #ddd;">อายุ</th>
+            <th style="padding:5px 5px;border:1px solid #ddd;">บ้านเลขที่/หมู่</th>
+            <th style="padding:5px 5px;border:1px solid #ddd;">การวินิจฉัย</th>
+            <th style="padding:5px 5px;border:1px solid #ddd;">โรคประจำตัว</th>
+            <th style="padding:5px 5px;border:1px solid #ddd;">CG ผู้ดูแล</th>
+            <th style="padding:5px 5px;border:1px solid #ddd;">ADL</th>
+            <th style="padding:5px 5px;border:1px solid #ddd;">ระดับ ADL</th>
+            <th style="padding:5px 5px;border:1px solid #ddd;">เยี่ยม/เป้า</th>
+            <th style="padding:5px 5px;border:1px solid #ddd;">เกณฑ์เยี่ยม</th>
+            <th style="padding:5px 5px;border:1px solid #ddd;">สถานะการดูแล</th>
           </tr>
         </thead>
         <tbody>${rowsHtml}</tbody>
@@ -2652,7 +2843,7 @@ document.getElementById('exportElderlyPdfBtn').addEventListener('click', async (
   if(rows.length===0){ toast('ไม่พบข้อมูลผู้สูงอายุสำหรับออกรายงาน','error'); return; }
   const progressEl = document.getElementById('elderlyReportProgress');
   const btn = document.getElementById('exportElderlyPdfBtn');
-  const ROWS_PER_PAGE = 16;
+  const ROWS_PER_PAGE = 14;
   const pages = [];
   for(let i=0;i<rows.length;i+=ROWS_PER_PAGE) pages.push(rows.slice(i,i+ROWS_PER_PAGE));
 
@@ -3130,6 +3321,123 @@ document.getElementById('generateEquipmentPdfBtn').addEventListener('click', asy
     btn.disabled = false;
   }
 });
+
+/* ===================== SUMMARY (ADL TREND) ===================== */
+const FISCAL_SEQ = [10,11,12,1,2,3,4,5,6,7,8,9];
+const CHART_COLORS = ['#d946ef','#2a9d8f','#e76f51','#264653','#f4a261','#6a4c93','#118ab2','#ef476f','#06d6a0','#8a5a44'];
+
+function currentFiscalYearBE(){
+  const now = new Date();
+  const be = beYear(now.getFullYear());
+  return (now.getMonth()+1) >= 10 ? be+1 : be;
+}
+function initSummaryControls(){
+  const fySel = document.getElementById('sumFiscalYear');
+  const endFY = Math.max(currentFiscalYearBE()+1, 2572);
+  let html = '';
+  for(let fy=2570; fy<=endFY; fy++) html += `<option value="${fy}">ปีงบประมาณ ${fy}</option>`;
+  fySel.innerHTML = html;
+  fySel.value = Math.max(currentFiscalYearBE(), 2570);
+  const optHtml = FISCAL_SEQ.map((m,i)=>`<option value="${i}">${TH_MONTHS_FULL[m-1]}</option>`).join('');
+  document.getElementById('sumStartMonth').innerHTML = optHtml;
+  document.getElementById('sumEndMonth').innerHTML = optHtml;
+  document.getElementById('sumStartMonth').value = 0;
+  document.getElementById('sumEndMonth').value = 11;
+}
+function renderSummaryElderlyOptions(){
+  const cgEl = document.getElementById('sumCg');
+  const sel = document.getElementById('sumElderly');
+  if(!cgEl || !sel) return;
+  const cg = cgEl.value;
+  const all = Object.assign({}, STATE_ELDERLY_HISTORY, STATE.elderly);
+  const ids = Object.keys(all).filter(id=>!cg || all[id].cgCode===cg).sort();
+  const prev = sel.value;
+  sel.innerHTML = '<option value="__ALL__">-- ทุกคน (แสดงทุกเส้น) --</option>' +
+    ids.map(id=>`<option value="${id}">${id} - ${all[id].name}</option>`).join('');
+  if(prev) sel.value = prev;
+}
+function allVisitsMerged(){
+  return Object.assign({}, STATE_VISIT_HISTORY||{}, STATE.visits||{});
+}
+let summaryChart = null;
+function renderSummary(){
+  if(!document.getElementById('sumChart')) return;
+  const fy = parseInt(document.getElementById('sumFiscalYear').value,10);
+  let si = parseInt(document.getElementById('sumStartMonth').value,10);
+  let ei = parseInt(document.getElementById('sumEndMonth').value,10);
+  if(ei < si){ const t=si; si=ei; ei=t; document.getElementById('sumStartMonth').value=si; document.getElementById('sumEndMonth').value=ei; }
+  const cgFilter = document.getElementById('sumCg').value;
+  const pick = document.getElementById('sumElderly').value;
+
+  const months = FISCAL_SEQ.slice(si, ei+1).map(m=>({ m, yBE: (m>=10 ? fy-1 : fy) }));
+  const labels = months.map(x=>`${TH_MONTHS_ABBR[x.m-1]} ${String(x.yBE).slice(-2)}`);
+
+  const all = Object.assign({}, STATE_ELDERLY_HISTORY, STATE.elderly);
+  let ids = Object.keys(all).filter(id=>!cgFilter || all[id].cgCode===cgFilter).sort();
+  if(pick && pick !== '__ALL__') ids = ids.filter(id=>id===pick);
+
+  const visits = Object.values(allVisitsMerged());
+  const series = ids.map(id=>{
+    const data = months.map(x=>{
+      const scores = visits.filter(v=>{
+        if(v.elderlyId!==id || !v.visitDate) return false;
+        const [vy,vm] = v.visitDate.split('-').map(Number);
+        return vm===x.m && beYear(vy)===x.yBE;
+      }).map(v=>v.assessment && v.assessment.adlScore).filter(s=>s!==''&&s!==null&&s!==undefined).map(Number);
+      return scores.length ? Math.round(scores.reduce((a,b)=>a+b,0)/scores.length*10)/10 : null;
+    });
+    return { id, name: all[id].name, data };
+  }).filter(s=>s.data.some(v=>v!==null));
+
+  if(summaryChart){ summaryChart.destroy(); summaryChart = null; }
+  const ctx = document.getElementById('sumChart').getContext('2d');
+  summaryChart = new Chart(ctx, {
+    type:'line',
+    data:{ labels, datasets: series.map((s,i)=>({
+      label: s.name, data: s.data, spanGaps: true, tension: .3,
+      borderColor: CHART_COLORS[i % CHART_COLORS.length],
+      backgroundColor: CHART_COLORS[i % CHART_COLORS.length],
+      borderWidth: 2.5, pointRadius: 4, pointHoverRadius: 6
+    }))},
+    options:{ responsive:true, maintainAspectRatio:false,
+      plugins:{ legend:{ position:'bottom', labels:{ font:{ family:'Sarabun', size:13 } } },
+        title:{ display:true, font:{ family:'Sarabun', size:15, weight:'700' },
+          text:`คะแนน ADL รายเดือน ปีงบประมาณ ${fy} (${TH_MONTHS_FULL[months[0].m-1]} – ${TH_MONTHS_FULL[months[months.length-1].m-1]})` },
+        tooltip:{ bodyFont:{ family:'Sarabun' }, titleFont:{ family:'Sarabun' } } },
+      scales:{ y:{ min:0, max:20, ticks:{ stepSize:2, font:{ family:'Sarabun' } }, title:{ display:true, text:'คะแนน ADL (0-20)', font:{ family:'Sarabun' } } },
+               x:{ ticks:{ font:{ family:'Sarabun' } } } }
+    }
+  });
+
+  const flat = series.flatMap(s=>s.data.filter(v=>v!==null));
+  const avg = flat.length ? (flat.reduce((a,b)=>a+b,0)/flat.length).toFixed(1) : '-';
+  const improved = series.filter(s=>{ const d=s.data.filter(v=>v!==null); return d.length>1 && d[d.length-1] > d[0]; }).length;
+  const declined = series.filter(s=>{ const d=s.data.filter(v=>v!==null); return d.length>1 && d[d.length-1] < d[0]; }).length;
+  document.getElementById('sumStats').innerHTML = `
+    <div class="stat"><b>${series.length}</b><span>ผู้มีข้อมูล ADL</span></div>
+    <div class="stat"><b>${avg}</b><span>ค่าเฉลี่ย ADL</span></div>
+    <div class="stat"><b>${improved}</b><span>แนวโน้มดีขึ้น</span></div>
+    <div class="stat"><b>${declined}</b><span>แนวโน้มลดลง</span></div>
+    <div class="stat"><b>${flat.length}</b><span>จุดข้อมูลรวม</span></div>`;
+
+  document.getElementById('sumTable').innerHTML = series.length ? `
+    <thead><tr><th>ชื่อ-สกุล</th><th>CG</th>${labels.map(l=>`<th style="text-align:center;">${l}</th>`).join('')}<th style="text-align:center;">ระดับล่าสุด</th></tr></thead>
+    <tbody>${series.map(s=>{
+      const last = [...s.data].reverse().find(v=>v!==null);
+      return `<tr><td><b>${s.name}</b></td><td>${STATE.cgs[all[s.id].cgCode]?.name||'-'}</td>
+        ${s.data.map(v=>`<td style="text-align:center;">${v===null?'-':v}</td>`).join('')}
+        <td style="text-align:center;">${adlLevelLabel(last)}</td></tr>`;
+    }).join('')}</tbody>` : '<tbody><tr><td class="muted">ไม่พบข้อมูลผลการประเมิน ADL ในช่วงที่เลือก</td></tr></tbody>';
+}
+initSummaryControls();
+['sumFiscalYear','sumStartMonth','sumEndMonth','sumElderly'].forEach(id=>
+  document.getElementById(id).addEventListener('change', renderSummary));
+document.getElementById('sumCg').addEventListener('change', ()=>{ renderSummaryElderlyOptions(); renderSummary(); });
+document.getElementById('sumRefreshBtn').addEventListener('click', ()=>{ renderSummaryElderlyOptions(); renderSummary(); });
+document.querySelector('nav.tabs button[data-tab="summary"]').addEventListener('click', ()=>{
+  renderSummaryElderlyOptions(); setTimeout(renderSummary, 120);
+});
+renderSummaryElderlyOptions();
 
 renderCgSelects();
 renderCgTable();
